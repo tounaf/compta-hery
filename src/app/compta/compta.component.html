@@ -16,17 +16,20 @@
       <div class="form-container mt-4" fxFlex="50">
         <form [formGroup]="form">
 
-          <!-- Fenêtre d'affichage d'image -->
+            
+          <!-- ======================================================================= -->
           <div class="image-container" fxFlex="50">
             <input placeholder="image" type="file" (change)="displayImage($event)" />
           </div>
 
+
+          <!-- ======================================================================= -->
           <div class="row">
             <div class="col-md-6 mt-5">
               <h3>CLASSE</h3>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
-                <mat-select>
+                <mat-select >
                   <span *ngFor="let classe of listeClass, let j = index">
                     <mat-option [value]="classe.value">{{classe.value}}</mat-option>
                   </span>
@@ -46,6 +49,8 @@
             </div>
           </div>
 
+
+          <!-- ======================================================================= -->
           <div class="row">
             <div class="col-md-6">
               <mat-form-field appearance="fill" style="width: 100%;">
@@ -162,7 +167,7 @@
 
     </div>
     <div class="col-md-5">
-      <img alt="myimage" class="img-fluid" [src]="imageSrc" *ngIf="imageSrc" />
+      <img alt="myimage" class="img-fluid" [src]="imageSrc" *ngIf="imageSrc" width="100%" height="100%"/>
     </div>
 
   </div>
