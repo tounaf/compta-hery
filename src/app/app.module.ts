@@ -9,6 +9,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComptaComponent } from './compta/compta.component';
 import { LoginComponent } from './login/login.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSelectModule,
 
   ],
   providers: [],
