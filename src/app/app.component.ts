@@ -1,10 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
+interface User {
+  nom: string;
+  prenom: string;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'konta-hery';
+  form: FormGroup;
+  results: User[] = [];
+  imageSrc: string = '';
+
+  constructor(private formBuilder: FormBuilder) {
+    this.form = new FormGroup({});
+  }
+
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      nom: [''],
+      prenom: ['']
+      // Autres champs
+    });
+  }
+
+  submitForm() {
+    //@ts-ignore
+    this.results.push(this.form.value);
+    console.log(this.results);
+    this.form.reset();
+  }
+
+
+  displayImage(event: Event) {
+    console.log(event);
+    const reader = new FileReader();
+    const files = (event?.target as HTMLInputElement).files;
+    console.log(files);
+    if (files) {
+      reader.readAsDataURL(files[0]);
+      reader.onload = (e) => {
+        this.imageSrc = reader.result as string;
+      };
+    }
+
+  }
 }
