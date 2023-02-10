@@ -1,171 +1,172 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-    <div class="row mt-4">
-        <div class="col-md-7" style="background-color: rgb(234, 243, 243); margin-left: 2%;">
-            <!-- Formulaire de saisie -->
-            <div class="form-container mt-4" fxFlex="50">
-                <form [formGroup]="form">
-                      
-                    <!-- ===============================Fenêtre d'affichage d'image======================================== -->
-                    <div class="image-container" fxFlex="50">
-                        <input placeholder="image" type="file" (change)="displayImage($event)" />
-                        <img alt="myimage" [src]="imageSrc" *ngIf="imageSrc" />
-                    </div>
 
+  <div class="row mt-4" style="margin-left: 2%;">
+    <div class="col-md-7" style="background-color: rgb(234, 243, 243);">
+      <!-- Formulaire de saisie -->
+      <div class="form-container mt-4" fxFlex="50">
+        <form [formGroup]="form">
 
-                    <!-- ======================================================================= -->
-                    <div class="row">
-                        <div class="col-md-6 mt-5">
-                            <h3>CLASSE</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>votre choix</mat-label>
-                                <mat-select>
-                                    <span *ngFor="let classe of listeClass, let j = index">
-                                    <mat-option [value]="classe.value">{{classe.value}}</mat-option>
-                                    </span>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6 mt-5">
-                            <h3>SOUS-CLASSE</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>votre choix</mat-label>
-                                <mat-select>
-                                    <span *ngFor="let sous_classe of listeSousClass, let j = index">
-                                    <mat-option>{{sous_classe.value}}</mat-option>
-                                    </span>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
+          <!-- Fenêtre d'affichage d'image -->
+          <div class="image-container" fxFlex="50">
+            <input placeholder="image" type="file" (change)="displayImage($event)" />
+          </div>
 
-
-                    <!-- ======================================================================= -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>votre choix</mat-label>
-                                <mat-select>
-                                    <span *ngFor="let choix1 of listeChoix1, let j = index">
-                                    <mat-option>{{choix1.value}}</mat-option>
-                                    </span>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                               <input matInput type="text">
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <!-- ======================================================================= -->
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <h3>Date</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                               <input matInput type="date">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Numéro de facture</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                               <input matInput type="text">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Mode de règlement</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>votre choix</mat-label>
-                                <mat-select>
-                                    <span *ngFor="let lgt of listeModeReglement, let j = index">
-                                    <mat-option>{{lgt.value}}</mat-option>
-                                    </span>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-
-
-                    <!-- ======================================================================= -->
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <h3>Autre info</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                               <input matInput type="text">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <h3>TTC</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                               <input matInput type="text">
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-
-                    <!-- ======================================================================= -->
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <h3>Nature</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>votre choix</mat-label>
-                                <mat-select>
-                                    <span>
-                                    <mat-option></mat-option>
-                                    </span>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                        </div>
-                    </div>
-
-
-                      <!-- ======================================================================= -->
-                      <div class="row mt-3">
-                        <div class="col-md-3">
-                            <h3>Taux Tva</h3>
-                            <mat-form-field  appearance="fill" style="width: 100%;">
-                                <mat-select>
-                                    <span *ngFor="let choix1 of listeChoix1, let a = index">
-                                    <mat-option>{{choix1.value}}</mat-option>
-                                    </span>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-3">
-                            <h3>Mht</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                               <input matInput type="text">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-3">
-                            <h3>M Tva</h3>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                               <input matInput type="text">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-3">
-                            <button mat-raised-button color="primary" style="width: 100%; margin-top: 52px;">Validé facture</button>
-                        </div>
-                    </div>
-
-                </form>
+          <div class="row">
+            <div class="col-md-6 mt-5">
+              <h3>CLASSE</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>votre choix</mat-label>
+                <mat-select>
+                  <span *ngFor="let classe of listeClass, let j = index">
+                    <mat-option [value]="classe.value">{{classe.value}}</mat-option>
+                  </span>
+                </mat-select>
+              </mat-form-field>
             </div>
-         
-        </div>    
-       
+            <div class="col-md-6 mt-5">
+              <h3>SOUS-CLASSE</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>votre choix</mat-label>
+                <mat-select>
+                  <span *ngFor="let sous_classe of listeSousClass, let j = index">
+                    <mat-option [value]="sous_classe.value">{{sous_classe.value}}</mat-option>
+                  </span>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>votre choix</mat-label>
+                <mat-select>
+                  <span *ngFor="let choix1 of listeChoix1, let j = index">
+                    <mat-option [value]="choix1.value">{{choix1.value}}</mat-option>
+                  </span>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput type="text">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- ======================================================================= -->
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <h3>Date</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput type="date">
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <h3>Numéro de facture</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <h3>Mode de règlement</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>votre choix</mat-label>
+                <mat-select>
+                  <span *ngFor="let lgt of listeModeReglement, let j = index">
+                    <mat-option [value]="lgt.value">{{lgt.value}}</mat-option>
+                  </span>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+
+          <!-- ======================================================================= -->
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <h3>Autre info</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <h3>TTC</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput type="text">
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <!-- ======================================================================= -->
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <h3>Nature</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>votre choix</mat-label>
+                <mat-select>
+                  <span>
+                    <mat-option [value]=""></mat-option>
+                  </span>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+
+
+          <!-- ======================================================================= -->
+          <div class="row mt-3">
+            <div class="col-md-3">
+              <h3>Taux Tva</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-select>
+                  <span *ngFor="let choix1 of listeChoix1, let a = index">
+                    <mat-option [value]="choix1.value">{{choix1.value}}</mat-option>
+                  </span>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <h3>Mht</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <h3>M Tva</h3>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <button mat-raised-button color="primary" style="width: 100%; margin-top: 52px;">Validé facture</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
     </div>
-    
+    <div class="col-md-5">
+      <img alt="myimage" class="img-fluid" [src]="imageSrc" *ngIf="imageSrc" />
+    </div>
+
+  </div>
+
 </body>
+
 </html>

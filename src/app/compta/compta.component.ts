@@ -140,12 +140,12 @@ export class ComptaComponent implements OnInit {
     ]
   }
 
-  submitForm() {
-    //@ts-ignore
-    this.results.push(this.form.value);
-    console.log(this.results);
-    this.form.reset();
-  }
+  // submitForm() {
+  //   //@ts-ignore
+  //   this.results.push(this.form.value);
+  //   console.log(this.results);
+  //   this.form.reset();
+  // }
 
 
   displayImage(event: Event) {
