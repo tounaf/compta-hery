@@ -1,44 +1,45 @@
 <!-- Formulaire de saisie -->
+<button class="btn btn-success">kama kely </button>
 <div class="form-container" fxFlex="50">
-    <form [formGroup]="form">
-      <mat-form-field>
-        <input matInput placeholder="Nom" formControlName="nom">
-      </mat-form-field>
-  
-      <mat-form-field>
-        <input matInput placeholder="Prénom" formControlName="prenom">
-      </mat-form-field>
-  
-      <!-- Autres champs -->
-  
-      <button mat-raised-button (click)="submitForm()">Envoyer</button>
-    </form>
-  </div>
-  
-  <!-- Fenêtre d'affichage d'image -->
-  <div class="image-container" fxFlex="50">
-    <input placeholder="image" type="file" (change)="displayImage($event)" />
-    <img alt="myimage" [src]="imageSrc" *ngIf="imageSrc" />
-  </div>
-  
-  <!-- Tableau de résultats -->
-  <div class="results-container" fxFlex="25">
-    <table>
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <!-- Autres colonnes -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let result of results">
-          <!-- @ts-ignore -->
-          <td>{{ result?.nom }}</td>
-          <!-- @ts-ignore -->
-          <td>{{ result?.prenom }}</td>
-          <!-- Autres colonnes -->
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput placeholder="Nom" formControlName="nom">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Prénom" formControlName="prenom">
+    </mat-form-field>
+
+    <!-- Autres champs -->
+
+    <button mat-raised-button (click)="submitForm()">Envoyer</button>
+  </form>
+</div>
+
+<!-- Fenêtre d'affichage d'image -->
+<div class="image-container" fxFlex="50">
+  <input placeholder="image" type="file" (change)="displayImage($event)" />
+  <img alt="myimage" [src]="imageSrc" *ngIf="imageSrc" />
+</div>
+
+<!-- Tableau de résultats -->
+<div class="results-container" fxFlex="25">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <!-- Autres colonnes -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of results">
+        <!-- @ts-ignore -->
+        <td>{{ result?.nom }}</td>
+        <!-- @ts-ignore -->
+        <td>{{ result?.prenom }}</td>
+        <!-- Autres colonnes -->
+      </tr>
+    </tbody>
+  </table>
+</div>
