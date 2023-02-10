@@ -21,6 +21,8 @@ export class ComptaComponent implements OnInit {
   listChoix2: any[] = [];
   listeModeReglement: any[] = [];
   imageSrc: string = '';
+  parentClasse: string = '';
+  sousClasse: string = '';
   constructor(private formBuilder: FormBuilder) {
     this.form = new FormGroup({});
   }

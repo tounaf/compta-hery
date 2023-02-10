@@ -14,6 +14,9 @@
     <div class="col-md-7" style="background-color: rgb(234, 243, 243);">
       <!-- Formulaire de saisie -->
       <div class="form-container mt-4" fxFlex="50">
+
+        <div>Kama je suis classe : {{parentClasse}}</div>
+        <div>Kama je suis sous - classe : {{sousClasse}}</div>
         <form [formGroup]="form">
 
           <!-- Fenêtre d'affichage d'image -->
@@ -26,9 +29,9 @@
               <h3>CLASSE</h3>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
-                <mat-select>
-                  <span *ngFor="let classe of listeClass, let j = index">
-                    <mat-option [value]="classe.value">{{classe.value}}</mat-option>
+                <mat-select [(ngModel)]="parentClasse" [ngModelOptions]="{standalone: true}">
+                  <span *ngFor="let cl of listeClass, let j = index">
+                    <mat-option [value]="cl.value">{{cl.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
@@ -37,7 +40,7 @@
               <h3>SOUS-CLASSE</h3>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
-                <mat-select>
+                <mat-select [(ngModel)]="sousClasse" [ngModelOptions]="{standalone: true}">
                   <span *ngFor="let sous_classe of listeSousClass, let j = index">
                     <mat-option [value]="sous_classe.value">{{sous_classe.value}}</mat-option>
                   </span>
