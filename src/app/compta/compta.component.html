@@ -13,13 +13,15 @@
             <!-- Formulaire de saisie -->
             <div class="form-container mt-4" fxFlex="50">
                 <form [formGroup]="form">
-                            
-                    <!-- Fenêtre d'affichage d'image -->
+                      
+                    <!-- ===============================Fenêtre d'affichage d'image======================================== -->
                     <div class="image-container" fxFlex="50">
                         <input placeholder="image" type="file" (change)="displayImage($event)" />
                         <img alt="myimage" [src]="imageSrc" *ngIf="imageSrc" />
                     </div>
 
+
+                    <!-- ======================================================================= -->
                     <div class="row">
                         <div class="col-md-6 mt-5">
                             <h3>CLASSE</h3>
@@ -27,7 +29,7 @@
                                 <mat-label>votre choix</mat-label>
                                 <mat-select>
                                     <span *ngFor="let classe of listeClass, let j = index">
-                                    <mat-option>{{classe.value}}</mat-option>
+                                    <mat-option [value]="classe.value">{{classe.value}}</mat-option>
                                     </span>
                                 </mat-select>
                             </mat-form-field>
@@ -45,6 +47,8 @@
                         </div>
                     </div>
 
+
+                    <!-- ======================================================================= -->
                     <div class="row">
                         <div class="col-md-6">
                             <mat-form-field appearance="fill" style="width: 100%;">
@@ -159,7 +163,7 @@
                 </form>
             </div>
          
-        </div>       
+        </div>    
        
     </div>
     
