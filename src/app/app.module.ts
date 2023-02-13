@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComptaComponent } from './compta/compta.component';
 import { LoginComponent } from './login/login.component';
 import { MatSelectModule } from '@angular/material/select';
+import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
   declarations: [
