@@ -123,7 +123,7 @@
                 <mat-label>votre choix</mat-label>
                 <mat-select>
                   <span *ngFor="let nature of listeNature, let n = index">
-                    <mat-option [value]="nature.value">{{nature.value}}</mat-option>
+                    <mat-option [value]="nature.value">{{nature.numero}} - {{nature.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
@@ -165,12 +165,34 @@
         </form>
       </div>
 
+
+      <!-- ======================================================================= -->
+      <table class="table mt-4 table-bordered table-hover">
+        <tr>
+          <th>compta</th>
+          <th>Debit</th>
+          <th>Credit</th>
+        </tr>
+        <tr>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+        </tr>
+        <tr>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+        </tr>
+      </table>
+
     </div>
     <div class="col-md-5">
       <img alt="myimage" class="img-fluid" [src]="imageSrc" *ngIf="imageSrc" width="100%" height="100%" />
     </div>
 
   </div>
+
+   
 
 </body>
 
