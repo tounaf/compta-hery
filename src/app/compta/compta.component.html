@@ -14,12 +14,9 @@
     <div class="col-md-7" style="background-color: rgb(234, 243, 243);">
       <!-- Formulaire de saisie -->
       <div class="form-container mt-4" fxFlex="50">
-
-        <div>Kama je suis classe : {{parentClasse}}</div>
-        <div>Kama je suis sous - classe : {{sousClasse}}</div>
         <form [formGroup]="form">
 
-
+        
           <!-- ======================================================================= -->
           <div class="image-container" fxFlex="50">
             <input placeholder="image" type="file" (change)="displayImage($event)" />
@@ -34,7 +31,7 @@
                 <mat-label>votre choix</mat-label>
                 <mat-select [(ngModel)]="parentClasse" [ngModelOptions]="{standalone: true}">
                   <span *ngFor="let cl of listeClass, let j = index">
-                    <mat-option [value]="cl.value">{{cl.value}}</mat-option>
+                    <mat-option (click)="checkValClass()" [value]="cl.value">{{cl.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
@@ -45,7 +42,7 @@
                 <mat-label>votre choix</mat-label>
                 <mat-select [(ngModel)]="sousClasse" [ngModelOptions]="{standalone: true}">
                   <span *ngFor="let sous_classe of listeSousClass, let j = index">
-                    <mat-option [value]="sous_classe.value">{{sous_classe.value}}</mat-option>
+                    <mat-option (click)="checkValClass()" [value]="sous_classe.value">{{sous_classe.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
@@ -59,7 +56,7 @@
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
                 <mat-select>
-                  <span *ngFor="let choix1 of listeChoix1, let j = index">
+                  <span *ngFor="let choix1 of valueSelect, let j = index">
                     <mat-option [value]="choix1.value">{{choix1.value}}</mat-option>
                   </span>
                 </mat-select>
@@ -112,7 +109,7 @@
             <div class="col-md-6">
               <h3>TTC</h3>
               <mat-form-field appearance="fill" style="width: 100%;">
-                <input matInput type="text">
+                <input matInput formControlName="ttc">
               </mat-form-field>
             </div>
           </div>
@@ -143,7 +140,7 @@
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-select>
                   <span *ngFor="let choix1 of listeChoix1, let a = index">
-                    <mat-option [value]="choix1.value">{{choix1.value}}</mat-option>
+                    <mat-option (click)="calculeCompta(choix1.value)" [value]="choix1.value">{{choix1.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
@@ -151,13 +148,13 @@
             <div class="col-md-3">
               <h3>Mht</h3>
               <mat-form-field appearance="fill" style="width: 100%;">
-                <input matInput type="text">
+                <input matInput type="text" [value]="Mht">
               </mat-form-field>
             </div>
             <div class="col-md-3">
               <h3>M Tva</h3>
               <mat-form-field appearance="fill" style="width: 100%;">
-                <input matInput type="text">
+                <input matInput type="text" [value]="Tva">
               </mat-form-field>
             </div>
             <div class="col-md-3">

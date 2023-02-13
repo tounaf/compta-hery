@@ -5,6 +5,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 interface User {
   nom: string;
   prenom: string;
+  ttc: any;
 }
 @Component({
   selector: 'app-compta',
@@ -23,14 +24,20 @@ export class ComptaComponent implements OnInit {
   imageSrc: string = '';
   parentClasse: string = '';
   sousClasse: string = '';
+  valueSelect: any[] = [];
+  Tva: any = '';
+  Mht: any = '';
   constructor(private formBuilder: FormBuilder) {
-    this.form = new FormGroup({});
+    this.form = new FormGroup({ 
+    });
   }
+ 
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       nom: [''],
-      prenom: ['']
+      prenom: [''],
+      ttc:[''],
       // Autres champs
     });
 
@@ -162,6 +169,40 @@ export class ComptaComponent implements OnInit {
       };
     }
 
+  }
+
+  checkValClass(){
+    if(this.parentClasse == "FACTURE" && this.sousClasse == "VENTES"){
+      this.valueSelect = this.listeChoix1;
+    }else if(this.parentClasse == "FACTURE" && this.sousClasse == "ACHATS"){
+      this.valueSelect = this.listChoix2;
+    }else{
+      this.valueSelect = [
+        {
+          value: 'AUTRE',
+        }
+      ];
+    }
+  }
+
+  calculeCompta(val: any){
+
+    if(val == "CLIENT 20%"){
+      this.Tva = (this.form.get('ttc')?.value/(1.2))*(0.2);
+      this.Mht = (this.form.get('ttc')?.value/this.Tva)
+    }
+     if(val == "CLIENT 10%"){
+      this.Tva = (this.form.get('ttc')?.value/(1.1))*(0.1);
+      this.Mht = (this.form.get('ttc')?.value/this.Tva)
+  
+    }
+    if(val == "CLIENT 5.5%"){
+      this.Tva = (this.form.get('ttc')?.value/(1.055))*(0.055);
+      this.Mht = (this.form.get('ttc')?.value/this.Tva)
+  
+    }
+    console.log("tva",this.Tva);
+    console.log("Mht",this.Mht); 
   }
 
 }
