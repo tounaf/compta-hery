@@ -17,9 +17,8 @@
                         <label class="form-label" for="typePasswordX-2">Password</label>
                     </div>
         
-               
-        
-                    <button class="btn btn-primary btn-lg btn-block" (click)="login()">Login</button>
+                    <button class="btn btn-primary btn-lg btn-block" (click)="login()">Login</button><br><br>
+                    <span [hidden]="erreurLogin" style="color: red;">login ou mot de passe incorrect ! </span>
                 </form>
               <hr class="my-4">
   

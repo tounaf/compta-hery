@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   user: any = '';
   pw: any = '';
+  erreurLogin:boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       user: [''],
       pw: [''],
     });
+    this.erreurLogin = true;
   }
 
   login(){
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('compta')
     }else{
       this.router.navigateByUrl('login')
+      this.erreurLogin =  false;
     }
   }
 
