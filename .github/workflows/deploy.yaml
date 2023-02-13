@@ -31,7 +31,7 @@ jobs:
 
     - name: Build Angular app
       run: |
-        npm run build:prod
+        npm run build:prod --outpu-path dis/prod
 
     - name: Deploy to Github Pages
       uses: peaceiris/actions-gh-pages@v3
