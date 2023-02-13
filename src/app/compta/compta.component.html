@@ -122,8 +122,8 @@
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
                 <mat-select>
-                  <span>
-                    <mat-option [value]=""></mat-option>
+                  <span *ngFor="let nature of listeNature, let n = index">
+                    <mat-option [value]="nature.value">{{nature.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
