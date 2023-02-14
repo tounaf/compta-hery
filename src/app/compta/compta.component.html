@@ -32,7 +32,7 @@
                 <mat-label>votre choix</mat-label>
                 <mat-select [(ngModel)]="parentClasse" [ngModelOptions]="{standalone: true}">
                   <span *ngFor="let cl of listeClass, let l = index">
-                    <mat-option (click)="checkValClass()" [value]="cl.value" style="width:0px">{{cl.value}}</mat-option>
+                    <mat-option (click)="checkValClass()" [value]="cl.value">{{cl.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
