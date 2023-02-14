@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ExcelService } from '../excel.service';
 
 
 interface User {
@@ -30,7 +31,7 @@ export class ComptaComponent implements OnInit {
   valueSelect: any[] = [];
   Tva: any = '';
   Mht: any = '';
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private excelService: ExcelService) {
     this.form = new FormGroup({
     });
   }
@@ -526,6 +527,10 @@ export class ComptaComponent implements OnInit {
     this.results.push(this.form.value);
     console.log(this.results);
     this.form.reset();
+  }
+
+  export() {
+    this.excelService.exportFromArray(this.results);
   }
 
 
