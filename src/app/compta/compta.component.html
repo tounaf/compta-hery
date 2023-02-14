@@ -10,8 +10,8 @@
 
 <body>
 
-  <div class="row mt-4" style="margin-left: 2%;">
-    <div class="col-md-7" style="background-color: rgb(234, 243, 243);">
+  <div class="row mt-4" style="margin-left: 2%; border: 4px solid rgb(184, 182, 182);">
+    <div class="col-md-7" style="border: 4px solid rgb(184, 182, 182);">
       <!-- Formulaire de saisie -->
       <div class="form-container mt-4" fxFlex="50">
         <form [formGroup]="form">
@@ -31,7 +31,7 @@
                 <mat-label>votre choix</mat-label>
                 <mat-select [(ngModel)]="parentClasse" [ngModelOptions]="{standalone: true}">
                   <span *ngFor="let cl of listeClass, let j = index">
-                    <mat-option (click)="checkValClass()" [value]="cl.value">{{cl.value}}</mat-option>
+                    <mat-option (click)="checkValClass()" [value]="cl.value" style="width:0px">{{cl.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
@@ -186,7 +186,7 @@
       </table>
 
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5" style="border: 4px solid rgb(184, 182, 182);">
       <img alt="myimage" class="img-fluid" [src]="imageSrc" *ngIf="imageSrc" width="100%" height="100%" />
     </div>
 
