@@ -16,7 +16,7 @@
       <div class="form-container mt-4" fxFlex="50">
         <form [formGroup]="form">
 
-        
+
           <!-- ======================================================================= -->
           <div class="image-container" fxFlex="50">
             <input placeholder="image" type="file" (change)="displayImage($event)" />
@@ -30,7 +30,7 @@
               <span style="margin-left: 10px;">CLASSE</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
-                <mat-select [(ngModel)]="parentClasse" [ngModelOptions]="{standalone: true}">
+                <mat-select formControlName="parentClasse">
                   <span *ngFor="let cl of listeClass, let l = index">
                     <mat-option (click)="checkValClass()" [value]="cl.value">{{cl.value}}</mat-option>
                   </span>
@@ -42,7 +42,7 @@
               <span style="margin-left: 10px;">SOUS-CLASSE</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
-                <mat-select [(ngModel)]="sousClasse" [ngModelOptions]="{standalone: true}">
+                <mat-select formControlName="sousClasse">
                   <span *ngFor="let sous_classe of listeSousClass, let j = index">
                     <mat-option (click)="checkValClass()" [value]="sous_classe.value">{{sous_classe.value}}</mat-option>
                   </span>
@@ -149,7 +149,8 @@
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-select>
                   <span *ngFor="let choix1 of listeChoix1, let a = index">
-                    <mat-option (click)="calculeCompta(choix1.value)" [value]="choix1.value">{{choix1.value}}</mat-option>
+                    <mat-option (click)="calculeCompta(choix1.value)"
+                      [value]="choix1.value">{{choix1.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
@@ -169,7 +170,8 @@
               </mat-form-field>
             </div>
             <div class="col-md-3">
-              <button mat-raised-button color="primary" style="width: 100%; margin-top: 52px;">Validé facture</button>
+              <button mat-raised-button color="primary" style="width: 100%; margin-top: 52px;"
+                (click)="submitForm()">Validé facture</button>
             </div>
           </div>
 
@@ -184,16 +186,13 @@
           <th>Debit</th>
           <th>Credit</th>
         </tr>
-        <tr>
-          <td>test</td>
-          <td>test</td>
-          <td>test</td>
-        </tr>
-        <tr>
-          <td>test</td>
-          <td>test</td>
-          <td>test</td>
-        </tr>
+        <tbody>
+          <tr *ngFor="let item of results">
+            <td>{{item.parentClasse}}</td>
+            <td>{{item.sousClasse}}</td>
+            <td>{{item.ttc}}</td>
+          </tr>
+        </tbody>
       </table>
 
     </div>
@@ -203,7 +202,7 @@
 
   </div>
 
-   
+
 
 </body>
 
