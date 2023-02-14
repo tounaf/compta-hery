@@ -170,7 +170,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-3">
-              <button mat-raised-button color="primary" style="width: 100%; margin-top: 52px;"
+              <button mat-raised-button color="primary" style="width: 100%; margin-top: 40px;"
                 (click)="submitForm()">Validé facture</button>
             </div>
           </div>
@@ -194,12 +194,12 @@
           </tr>
         </tbody>
       </table>
+      
       <div>
-        <button mat-raised-button color="warning" (click)="export()">
+        <button mat-raised-button color="info" (click)="export()">
           Export as Excel
         </button>
       </div>
-
     </div>
     <div class="col-md-5" style="border: 4px solid rgb(184, 182, 182); background-color: rgb(149, 198, 244);">
       <img alt="myimage" class="img-fluid" [src]="imageSrc" *ngIf="imageSrc" width="100%" height="100%" />
