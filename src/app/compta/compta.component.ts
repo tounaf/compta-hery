@@ -9,6 +9,8 @@ interface User {
   ttc: any;
   parentClasse: string;
   sousClasse: string;
+  compte: string;
+  date: any;
 }
 @Component({
   selector: 'app-compta',
@@ -31,6 +33,13 @@ export class ComptaComponent implements OnInit {
   valueSelect: any[] = [];
   Tva: any = '';
   Mht: any = '';
+  compte = '';
+  date = '';
+
+  images: string[] = [];
+  selectedImage: string = '';
+  currentIndex = 0;
+
   constructor(private formBuilder: FormBuilder, private excelService: ExcelService) {
     this.form = new FormGroup({
     });
@@ -43,7 +52,9 @@ export class ComptaComponent implements OnInit {
       prenom: [''],
       ttc: [''],
       parentClasse: [''],
-      sousClasse: ['']
+      sousClasse: [''],
+      compte: [''],
+      date: ['']
       // Autres champs
     });
 
@@ -523,10 +534,20 @@ export class ComptaComponent implements OnInit {
 
   submitForm() {
     //@ts-ignore
-    console.log(this.form);
+    console.log('eeeeeeeee',this.form.get('sousClasse')?.value);
+
+    if(this.form.get('sousClasse')?.value == "VENTES"){
+      this.form.get('sousClasse')?.setValue("VE");
+    }
+    if(this.form.get('sousClasse')?.value =="ACHATS"){
+      this.form.get('sousClasse')?.setValue("AC");
+    }
+
     this.results.push(this.form.value);
     console.log(this.results);
     this.form.reset();
+
+   
   }
 
   export() {
@@ -547,6 +568,40 @@ export class ComptaComponent implements OnInit {
     }
 
   }
+
+  //@ts-ignore
+  onFileSelected(event): void {
+    if (event.target.files) {
+      for (const file of event.target.files) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e: any) => {
+          this.images.push(e.target.result);
+        };
+      }
+      this.selectedImage = this.images[0];
+    }
+  }
+
+  showImage(index: number): void {
+    this.currentIndex = index;
+    this.selectedImage = this.images[index];
+  }
+
+  prevImage(): void {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.selectedImage = this.images[this.currentIndex];
+    }
+  }
+
+  nextImage(): void {
+    if (this.currentIndex < this.images.length - 1) {
+      this.currentIndex++;
+      this.selectedImage = this.images[this.currentIndex];
+    }
+  }
+
 
   checkValClass() {
     if (this.form.get("parentClasse")?.value == "FACTURE" && this.form.get("sousClasse")?.value == "VENTES") {
