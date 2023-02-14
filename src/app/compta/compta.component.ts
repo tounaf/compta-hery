@@ -41,6 +41,7 @@ export class ComptaComponent implements OnInit {
       ttc:[''],
       // Autres champs
     });
+    
 
     this.listeClass = [
       {

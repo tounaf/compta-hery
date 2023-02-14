@@ -26,18 +26,20 @@
           <!-- ======================================================================= -->
           <div class="row">
             <div class="col-md-6 mt-5">
-              <h3>CLASSE</h3>
+              <mat-icon>folder</mat-icon>
+              <span style="margin-left: 10px;">CLASSE</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
                 <mat-select [(ngModel)]="parentClasse" [ngModelOptions]="{standalone: true}">
-                  <span *ngFor="let cl of listeClass, let j = index">
+                  <span *ngFor="let cl of listeClass, let l = index">
                     <mat-option (click)="checkValClass()" [value]="cl.value" style="width:0px">{{cl.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
             </div>
             <div class="col-md-6 mt-5">
-              <h3>SOUS-CLASSE</h3>
+              <mat-icon>folder_open</mat-icon>
+              <span style="margin-left: 10px;">SOUS-CLASSE</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
                 <mat-select [(ngModel)]="sousClasse" [ngModelOptions]="{standalone: true}">
@@ -72,19 +74,22 @@
           <!-- ======================================================================= -->
           <div class="row mt-3">
             <div class="col-md-4">
-              <h3>Date</h3>
+              <mat-icon>date_range</mat-icon>
+              <span style="margin-left:10px">Date</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <input matInput type="date">
               </mat-form-field>
             </div>
             <div class="col-md-4">
-              <h3>Numéro de facture</h3>
+              <mat-icon>receipt</mat-icon>
+              <span style="margin-left:10px">Numéro de facture</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <input matInput type="text">
               </mat-form-field>
             </div>
             <div class="col-md-4">
-              <h3>Mode de règlement</h3>
+              <mat-icon>payment</mat-icon>
+              <span style="margin-left:10px">Mode de règlement</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
                 <mat-select>
@@ -101,13 +106,15 @@
           <!-- ======================================================================= -->
           <div class="row mt-3">
             <div class="col-md-6">
-              <h3>Autre info</h3>
+              <mat-icon>info</mat-icon>
+              <span style="margin-left:10px">Autre info</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <input matInput type="text">
               </mat-form-field>
             </div>
             <div class="col-md-6">
-              <h3>TTC</h3>
+              <mat-icon>attach_money</mat-icon>
+              <span style="margin-left:10px">TTC</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <input matInput formControlName="ttc">
               </mat-form-field>
@@ -118,7 +125,8 @@
           <!-- ======================================================================= -->
           <div class="row mt-3">
             <div class="col-md-6">
-              <h3>Nature</h3>
+              <mat-icon>description</mat-icon>
+              <span style="margin-left:10px">Nature</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
                 <mat-select>
@@ -136,7 +144,8 @@
           <!-- ======================================================================= -->
           <div class="row mt-3">
             <div class="col-md-3">
-              <h3>Taux Tva</h3>
+              <mat-icon>monetization_on</mat-icon>
+              <span style="margin-left:10px">Taux Tva</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-select>
                   <span *ngFor="let choix1 of listeChoix1, let a = index">
@@ -146,13 +155,15 @@
               </mat-form-field>
             </div>
             <div class="col-md-3">
-              <h3>Mht</h3>
+              <mat-icon>attach_money</mat-icon>
+              <span style="margin-left:10px">Mht</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <input matInput type="text" [value]="Mht">
               </mat-form-field>
             </div>
             <div class="col-md-3">
-              <h3>M Tva</h3>
+              <mat-icon>monetization_on</mat-icon>
+              <span style="margin-left:10px">M Tva</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <input matInput type="text" [value]="Tva">
               </mat-form-field>
@@ -186,7 +197,7 @@
       </table>
 
     </div>
-    <div class="col-md-5" style="border: 4px solid rgb(184, 182, 182);">
+    <div class="col-md-5" style="border: 4px solid rgb(184, 182, 182); background-color: rgb(149, 198, 244);">
       <img alt="myimage" class="img-fluid" [src]="imageSrc" *ngIf="imageSrc" width="100%" height="100%" />
     </div>
 

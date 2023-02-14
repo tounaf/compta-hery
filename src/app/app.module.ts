@@ -11,6 +11,7 @@ import { ComptaComponent } from './compta/compta.component';
 import { LoginComponent } from './login/login.component';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Routes } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RouterModule, Routes } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatIconModule
 
   ],
   providers: [],
