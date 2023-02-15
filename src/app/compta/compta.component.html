@@ -162,7 +162,7 @@
               <mat-icon>monetization_on</mat-icon>
               <span style="margin-left:10px">Taux Tva</span>
               <mat-form-field appearance="fill" style="width: 100%;">
-                <mat-select>
+                <mat-select formControlName="TauxTva">
                   <span *ngFor="let choix1 of listeChoix1, let a = index">
                     <mat-option (click)="calculeCompta(choix1.value)"
                       [value]="choix1.value">{{choix1.value}}</mat-option>
@@ -212,26 +212,26 @@
             <td>{{item.compte}}</td>
             <td>{{item.fileName}}</td>
             <td>{{item.fournisseur}}</td>
-            <td></td>
-            <td></td>
+            <td>{{item.veTtc}}</td>
+            <td>{{item.acTtc}}</td>
           </tr>
           <tr>
             <td>{{item.date}}</td>
             <td>{{item.sousClasse}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{item.nature}}</td>
+            <td>{{item.fileName}}</td>
+            <td>{{item.fournisseur}}</td>
+            <td>{{item.veDebit1}}</td>
+            <td>{{item.veCredit1}}</td>
           </tr>
           <tr>
             <td>{{item.date}}</td>
             <td>{{item.sousClasse}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{item.TauxTva}}</td>
+            <td>{{item.fileName}}</td>
+            <td>{{item.fournisseur}}</td>
+            <td>{{item.veDebit2}}</td>
+            <td>{{item.veCredit2}}</td>
           </tr>
         </tbody>
       </table>
