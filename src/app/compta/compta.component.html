@@ -205,13 +205,31 @@
           <th>Debit</th>
           <th>Credit</th>
         </tr>
-        <tbody>
-          <tr *ngFor="let item of results">
+        <tbody *ngFor="let item of results">
+          <tr>
             <td>{{item.date}}</td>
             <td>{{item.sousClasse}}</td>
             <td>{{item.compte}}</td>
             <td>{{item.fileName}}</td>
             <td>{{item.fournisseur}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>{{item.date}}</td>
+            <td>{{item.sousClasse}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>{{item.date}}</td>
+            <td>{{item.sousClasse}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
           </tr>
