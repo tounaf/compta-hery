@@ -4,8 +4,8 @@ import { ExcelService } from '../excel.service';
 
 
 interface User {
-  nom: string;
-  prenom: string;
+  // nom: string;
+  // prenom: string;
   ttc: any;
   parentClasse: string;
   sousClasse: string;
