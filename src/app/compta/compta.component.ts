@@ -548,6 +548,7 @@ export class ComptaComponent implements OnInit {
     //@ts-ignore
     // console.log('aaaaaaa',this.form);
 
+     // ===========set valeur vente et achat================
     if(this.form.get('sousClasse')?.value == "VENTES"){
       this.form.get('sousClasse')?.setValue("VE");
     }
@@ -555,18 +556,34 @@ export class ComptaComponent implements OnInit {
       this.form.get('sousClasse')?.setValue("AC");
     }
 
+     // ===========filename================
     this.form.get('fileName')?.setValue(this.fileName);
 
+     // ==============fournisseur==============
     const valFournisseur = this.form.get('fournisseur')?.value;
     this.form.get('fournisseur')?.setValue(valFournisseur+' '+this.fileName);
 
+    // ===========calcule achat================
     const calculAchat = ((this.nature + this.Tva)/this.form.get('ttc')?.value);
     this.form.get('achat')?.setValue(calculAchat);
 
-    const calculVente = ((this.form.get('compte')?.value)/(this.nature + this.Tva));
-    this.form.get('vente')?.setValue(calculVente);
-    console.log('fffff',calculAchat);
-    console.log('rrrrrrrrrrrr',calculVente);
+     // ===========calcule vente================
+    if(this.form.get('compte')?.value =="CLIENT 20%" ){
+      const client = 0.2;
+      const calculVente = ((client)/(this.nature + this.Tva));
+      this.form.get('vente')?.setValue(calculVente);
+    }
+    if(this.form.get('compte')?.value =="CLIENT 10%" ){
+      const client = 0.1;
+      const calculVente = ((client)/(this.nature + this.Tva));
+      this.form.get('vente')?.setValue(calculVente);
+    }
+    if(this.form.get('compte')?.value =="CLIENT 0.5%" ){
+      const client = 0.05;
+      const calculVente = ((client)/(this.nature + this.Tva));
+      this.form.get('vente')?.setValue(calculVente);
+    }
+
 
     this.results.push(this.form.value);
     console.log('------------',this.results);
