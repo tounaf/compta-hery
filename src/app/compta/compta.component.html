@@ -81,7 +81,7 @@
             </div>
             <div class="col-md-6">
               <mat-form-field appearance="fill" style="width: 100%;">
-                <input matInput type="text">
+                <input matInput formControlName="fournisseur" type="text">
               </mat-form-field>
             </div>
           </div>
@@ -99,7 +99,7 @@
               <mat-icon>receipt</mat-icon>
               <span style="margin-left:10px">Numéro de facture</span>
               <mat-form-field appearance="fill" style="width: 100%;">
-                <input matInput type="text">
+                <input formControlName="fileName" [value]="fileName" matInput>
               </mat-form-field>
             </div>
             <div class="col-md-4">
@@ -144,9 +144,9 @@
               <span style="margin-left:10px">Nature</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
-                <mat-select>
+                <mat-select formControlName="nature">
                   <span *ngFor="let nature of listeNature, let n = index">
-                    <mat-option [value]="nature.value">{{nature.numero}} - {{nature.value}}</mat-option>
+                    <mat-option [value]="nature.numero">{{nature.numero}} - {{nature.value}}</mat-option>
                   </span>
                 </mat-select>
               </mat-form-field>
@@ -210,17 +210,17 @@
             <td>{{item.date}}</td>
             <td>{{item.sousClasse}}</td>
             <td>{{item.compte}}</td>
+            <td>{{item.fileName}}</td>
+            <td>{{item.fournisseur}}</td>
             <td></td>
-            <td></td>
-            <td>{{item.ttc}}</td>
             <td></td>
           </tr>
         </tbody>
       </table>
       
       <div>
-        <button mat-raised-button color="info" (click)="export()">
-          Export as Excel
+        <button mat-raised-button color="primary" (click)="export()" class="mt-2 mb-3">
+          Export Excel
         </button>
       </div>
     </div>

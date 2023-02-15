@@ -11,6 +11,10 @@ interface User {
   sousClasse: string;
   compte: string;
   date: any;
+  fileName: any;
+  fournisseur:any;
+  achat: any;
+  vente:any;
 }
 @Component({
   selector: 'app-compta',
@@ -35,6 +39,9 @@ export class ComptaComponent implements OnInit {
   Mht: any = '';
   compte = '';
   date = '';
+  fileName = '';
+  fournisseur = '';
+  nature:any = '';
 
   images: string[] = [];
   selectedImage: string = '';
@@ -54,7 +61,12 @@ export class ComptaComponent implements OnInit {
       parentClasse: [''],
       sousClasse: [''],
       compte: [''],
-      date: ['']
+      date: [''],
+      fileName: [''],
+      fournisseur: [''],
+      nature: [''],
+      achat: [''],
+      vente: [''],
       // Autres champs
     });
 
@@ -534,7 +546,7 @@ export class ComptaComponent implements OnInit {
 
   submitForm() {
     //@ts-ignore
-    console.log('eeeeeeeee',this.form.get('sousClasse')?.value);
+    // console.log('aaaaaaa',this.form);
 
     if(this.form.get('sousClasse')?.value == "VENTES"){
       this.form.get('sousClasse')?.setValue("VE");
@@ -543,8 +555,21 @@ export class ComptaComponent implements OnInit {
       this.form.get('sousClasse')?.setValue("AC");
     }
 
+    this.form.get('fileName')?.setValue(this.fileName);
+
+    const valFournisseur = this.form.get('fournisseur')?.value;
+    this.form.get('fournisseur')?.setValue(valFournisseur+' '+this.fileName);
+
+    const calculAchat = ((this.nature + this.Tva)/this.form.get('ttc')?.value);
+    this.form.get('achat')?.setValue(calculAchat);
+
+    const calculVente = ((this.form.get('compte')?.value)/(this.nature + this.Tva));
+    this.form.get('vente')?.setValue(calculVente);
+    console.log('fffff',calculAchat);
+    console.log('rrrrrrrrrrrr',calculVente);
+
     this.results.push(this.form.value);
-    console.log(this.results);
+    console.log('------------',this.results);
     this.form.reset();
 
    
@@ -562,6 +587,10 @@ export class ComptaComponent implements OnInit {
     console.log(files);
     if (files) {
       reader.readAsDataURL(files[0]);
+      console.log(files[0].name);
+      const name = files[0].name;
+      this.fileName = name.split('.')[0];
+      
       reader.onload = (e) => {
         this.imageSrc = reader.result as string;
       };
@@ -578,6 +607,7 @@ export class ComptaComponent implements OnInit {
         reader.onload = (e: any) => {
           this.images.push(e.target.result);
         };
+        
       }
       this.selectedImage = this.images[0];
     }
