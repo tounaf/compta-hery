@@ -1,5 +1,13 @@
 /* Importing fonts from Google */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+
+
+
+
 
 /* Reseting */
 * {
@@ -14,13 +22,13 @@ body {
 }
 
 .wrapper {
-    max-width: 350px;
+    max-width: 400px;
     min-height: 500px;
     margin: 80px auto;
-    padding: 40px 30px 30px 30px;
+    padding: 80px 30px 30px 30px;
     background-color: #ecf0f3;
     border-radius: 15px;
-    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+    box-shadow: 13px 13px 20px #9a9b9d, -13px -13px 20px #fff;
 }
 
 .logo {
@@ -44,7 +52,7 @@ body {
     font-size: 1.4rem;
     letter-spacing: 1.3px;
     padding-left: 10px;
-    color: #555;
+    color: #fffdfd;
 }
 
 .wrapper .form-field input {
@@ -54,14 +62,14 @@ body {
     outline: none;
     background: none;
     font-size: 1.2rem;
-    color: #666;
+    color: #ffffff;
     padding: 10px 15px 10px 10px;
     /* border: 1px solid red; */
 }
 
 .wrapper .form-field {
     padding-left: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-radius: 20px;
     box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
 }
