@@ -12,9 +12,9 @@ interface User {
   compte: string;
   date: any;
   fileName: any;
-  fournisseur:any;
+  fournisseur: any;
   achat: any;
-  vente:any;
+  vente: any;
 }
 @Component({
   selector: 'app-compta',
@@ -41,11 +41,12 @@ export class ComptaComponent implements OnInit {
   date = '';
   fileName = '';
   fournisseur = '';
-  nature:any = '';
+  nature: any = '';
 
   images: string[] = [];
   selectedImage: string = '';
   currentIndex = 0;
+  pdfSrc: any = [];
 
   constructor(private formBuilder: FormBuilder, private excelService: ExcelService) {
     this.form = new FormGroup({
@@ -548,48 +549,48 @@ export class ComptaComponent implements OnInit {
     //@ts-ignore
     // console.log('aaaaaaa',this.form);
 
-     // ===========set valeur vente et achat================
-    if(this.form.get('sousClasse')?.value == "VENTES"){
+    // ===========set valeur vente et achat================
+    if (this.form.get('sousClasse')?.value == "VENTES") {
       this.form.get('sousClasse')?.setValue("VE");
     }
-    if(this.form.get('sousClasse')?.value =="ACHATS"){
+    if (this.form.get('sousClasse')?.value == "ACHATS") {
       this.form.get('sousClasse')?.setValue("AC");
     }
 
-     // ===========filename================
+    // ===========filename================
     this.form.get('fileName')?.setValue(this.fileName);
 
-     // ==============fournisseur==============
+    // ==============fournisseur==============
     const valFournisseur = this.form.get('fournisseur')?.value;
-    this.form.get('fournisseur')?.setValue(valFournisseur+' '+this.fileName);
+    this.form.get('fournisseur')?.setValue(valFournisseur + ' ' + this.fileName);
 
     // ===========calcule achat================
-    const calculAchat = ((this.nature + this.Tva)/this.form.get('ttc')?.value);
+    const calculAchat = ((this.nature + this.Tva) / this.form.get('ttc')?.value);
     this.form.get('achat')?.setValue(calculAchat);
 
-     // ===========calcule vente================
-    if(this.form.get('compte')?.value =="CLIENT 20%" ){
+    // ===========calcule vente================
+    if (this.form.get('compte')?.value == "CLIENT 20%") {
       const client = 0.2;
-      const calculVente = ((client)/(this.nature + this.Tva));
+      const calculVente = ((client) / (this.nature + this.Tva));
       this.form.get('vente')?.setValue(calculVente);
     }
-    if(this.form.get('compte')?.value =="CLIENT 10%" ){
+    if (this.form.get('compte')?.value == "CLIENT 10%") {
       const client = 0.1;
-      const calculVente = ((client)/(this.nature + this.Tva));
+      const calculVente = ((client) / (this.nature + this.Tva));
       this.form.get('vente')?.setValue(calculVente);
     }
-    if(this.form.get('compte')?.value =="CLIENT 0.5%" ){
+    if (this.form.get('compte')?.value == "CLIENT 0.5%") {
       const client = 0.05;
-      const calculVente = ((client)/(this.nature + this.Tva));
+      const calculVente = ((client) / (this.nature + this.Tva));
       this.form.get('vente')?.setValue(calculVente);
     }
 
 
     this.results.push(this.form.value);
-    console.log('------------',this.results);
+    console.log('------------', this.results);
     this.form.reset();
 
-   
+
   }
 
   export() {
@@ -607,7 +608,7 @@ export class ComptaComponent implements OnInit {
       console.log(files[0].name);
       const name = files[0].name;
       this.fileName = name.split('.')[0];
-      
+
       reader.onload = (e) => {
         this.imageSrc = reader.result as string;
       };
@@ -624,7 +625,7 @@ export class ComptaComponent implements OnInit {
         reader.onload = (e: any) => {
           this.images.push(e.target.result);
         };
-        
+
       }
       this.selectedImage = this.images[0];
     }
@@ -683,5 +684,15 @@ export class ComptaComponent implements OnInit {
     console.log("tva", this.Tva);
     console.log("Mht", this.Mht);
   }
+
+  onFilePdfSelected(event: any) {
+    const file = event.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      this.pdfSrc = fileReader.result;
+    };
+    fileReader.readAsArrayBuffer(file);
+  }
+
 
 }

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<!-- 
+  <!-- 
   <input type="file" (change)="onFileSelected($event)" multiple>
   <div>
     <img src="{{selectedImage}}" width="500" height="500">
@@ -23,6 +23,15 @@
       <img src="{{image}}" (click)="showImage(i)" width="100" height="100">
     </div>
   </div> -->
+  <div>
+    import
+    <input type="file" (change)="onFilePdfSelected($event)" accept="application/pdf">
+
+    <pdf-viewer [src]="pdfSrc"></pdf-viewer>
+
+
+  </div>
+
 
 
   <div class="row mt-4" style="margin-left: 2%; border: 4px solid rgb(184, 182, 182);">
@@ -235,7 +244,7 @@
           </tr>
         </tbody>
       </table>
-      
+
       <div>
         <button mat-raised-button color="primary" (click)="export()" class="mt-2 mb-3">
           Export Excel
