@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ExcelService } from '../excel.service';
 
 
@@ -46,13 +46,12 @@ export class ComptaComponent implements OnInit {
   images: string[] = [];
   selectedImage: string = '';
   currentIndex = 0;
-  pdfSrc: any = [];
+  pdfSrc: any = '';
 
   constructor(private formBuilder: FormBuilder, private excelService: ExcelService) {
     this.form = new FormGroup({
     });
   }
-
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -610,6 +609,7 @@ export class ComptaComponent implements OnInit {
       this.fileName = name.split('.')[0];
 
       reader.onload = (e) => {
+
         this.imageSrc = reader.result as string;
       };
     }
@@ -687,6 +687,7 @@ export class ComptaComponent implements OnInit {
 
   onFilePdfSelected(event: any) {
     const file = event.target.files[0];
+    console.log(file.type);
     const fileReader = new FileReader();
     fileReader.onload = () => {
       this.pdfSrc = fileReader.result;

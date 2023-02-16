@@ -24,10 +24,19 @@
     </div>
   </div> -->
   <div>
-    import
-    <input type="file" (change)="onFilePdfSelected($event)" accept="application/pdf">
+    <!-- 
+    <pdf-viewer [src]="'assets/Sampana.pdf'" [rotation]="0" [original-size]="false" [show-all]="true"
+      [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
+      [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+      style="width: 100%; height: 600px;"></pdf-viewer> -->
 
-    <pdf-viewer [src]="pdfSrc"></pdf-viewer>
+    import Image
+    <input type="file" (change)="onFilePdfSelected($event)" accept=".pdf">
+
+    <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [rotation]="0" [original-size]="false" [show-all]="true"
+      [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
+      [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+      style="width: 100%; height: 600px;"></pdf-viewer>
 
 
   </div>
@@ -43,7 +52,8 @@
 
           <!-- ======================================================================= -->
           <div class="image-container" fxFlex="50">
-            <input placeholder="image" type="file" (change)="displayImage($event)" multiple />
+            <input placeholder="image" type="file" (change)="displayImage($event)" accept=".jpeg, .png, .gif, .pdf"
+              capture="user" multiple />
           </div>
 
 
