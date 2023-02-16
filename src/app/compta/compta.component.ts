@@ -681,16 +681,28 @@ export class ComptaComponent implements OnInit {
     const reader = new FileReader();
     const files = (event?.target as HTMLInputElement).files;
     console.log(files);
+
     if (files) {
-      reader.readAsDataURL(files[0]);
-      console.log(files[0].name);
-      const name = files[0].name;
-      this.fileName = name.split('.')[0];
+      const file = files[0];
+      if (file.type === 'application/pdf') {
 
-      reader.onload = (e) => {
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+          this.pdfSrc = fileReader.result;
+        };
+        fileReader.readAsArrayBuffer(file);
 
-        this.imageSrc = reader.result as string;
-      };
+      } else {
+        reader.readAsDataURL(file);
+        const name = file.name;
+        this.fileName = name.split('.')[0];
+
+        reader.onload = (e) => {
+
+          this.imageSrc = reader.result as string;
+        };
+      }
+
     }
 
   }

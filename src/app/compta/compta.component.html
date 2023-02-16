@@ -23,23 +23,6 @@
       <img src="{{image}}" (click)="showImage(i)" width="100" height="100">
     </div>
   </div> -->
-  <div>
-    <!-- 
-    <pdf-viewer [src]="'assets/Sampana.pdf'" [rotation]="0" [original-size]="false" [show-all]="true"
-      [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
-      [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
-      style="width: 100%; height: 600px;"></pdf-viewer> -->
-
-    import Image
-    <input type="file" (change)="onFilePdfSelected($event)" accept=".pdf">
-
-    <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [rotation]="0" [original-size]="false" [show-all]="true"
-      [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
-      [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
-      style="width: 100%; height: 600px;"></pdf-viewer>
-
-
-  </div>
 
 
 
@@ -262,7 +245,12 @@
       </div>
     </div>
     <div class="col-md-5" style="border: 4px solid rgb(184, 182, 182); background-color: rgb(149, 198, 244);">
-      <img alt="myimage" class="img-fluid" [src]="imageSrc" *ngIf="imageSrc" width="100%" height="100%" />
+      <img *ngIf="imageSrc" alt="myimage" class="img-fluid" [src]="imageSrc" width="100%" height="100%" />
+      <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [rotation]="0" [original-size]="false" [show-all]="true"
+        [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
+        [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+        style="width: 100%; height: 600px;"></pdf-viewer>
+
     </div>
 
   </div>
