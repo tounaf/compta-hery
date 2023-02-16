@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExcelService } from '../excel.service';
+// import { SessionStorageService } from 'ngx-webstorage';
 
 
 interface User {
@@ -59,7 +60,12 @@ export class ComptaComponent implements OnInit {
   selectedImage: string = '';
   currentIndex = 0;
 
-  constructor(private formBuilder: FormBuilder, private excelService: ExcelService) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private excelService: ExcelService,
+    // private sessionStorage: SessionStorageService
+    )
+    {
     this.form = new FormGroup({
     });
   }
@@ -92,6 +98,9 @@ export class ComptaComponent implements OnInit {
       acDebit2: [''],
       // Autres champs
     });
+
+    // const pw = this.sessionStorage.retrieve('password');
+    // console.log('Logged in as ' + pw);
 
 
     this.listeClass = [
