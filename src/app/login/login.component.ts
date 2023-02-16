@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { relative } from 'path';
+// import { SessionStorageService } from 'ngx-webstorage';
+
 
 interface User {
   user: string;
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
     private routes: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
+    // private sessionStorage: SessionStorageService
     ) {
     this.form = new FormGroup({ 
     });
@@ -41,8 +44,11 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(this.form.get('user')?.value);
     console.log(this.form.get('pw')?.value);
-    if(this.form.get('user')?.value == "admin" && this.form.get('pw')?.value == "admin"){
-      this.router.navigateByUrl('compta')
+    const username = this.form.get('user')?.value;
+    const pw = this.form.get('pw')?.value;
+    if(username == "admin" && pw == "admin"){
+      // this.sessionStorage.store('password', pw);
+      this.router.navigateByUrl('compta');
     }else{
       this.router.navigateByUrl('login')
       this.erreurLogin =  false;

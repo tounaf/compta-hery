@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
@@ -30,7 +31,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     ReactiveFormsModule,
     MatSelectModule,
     MatIconModule,
-    PdfViewerModule
+    PdfViewerModule,
 
   ],
   providers: [],
