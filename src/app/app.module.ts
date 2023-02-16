@@ -12,7 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-// import { NgxWebstorageModule } from 'ngx-webstorage';
+
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatSelectModule,
     MatIconModule,
-    // NgxWebstorageModule.forRoot()
+    PdfViewerModule,
 
   ],
   providers: [],
