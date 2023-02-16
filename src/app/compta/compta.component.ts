@@ -578,23 +578,23 @@ export class ComptaComponent implements OnInit {
       this.form.get('acTtc')?.setValue(0);
         if(this.form.get('TauxTva')?.value == "CLIENT 20%"){
          const calVeCredit1 = 1.2;
-         this.form.get('veCredit1')?.setValue(this.form.get('ttc')?.value / calVeCredit1);
-         this.form.get('veCredit2')?.setValue(this.form.get('ttc')?.value / (calVeCredit1 * 0.2));
+         this.form.get('veCredit1')?.setValue((this.form.get('ttc')?.value / calVeCredit1).toFixed(2));
+         this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0.2)).toFixed(2));
          this.form.get('veDebit1')?.setValue(0);
          this.form.get('veDebit2')?.setValue(0);
 
         }
         if(this.form.get('TauxTva')?.value == "CLIENT 10%"){
          const calVeCredit1 = 1.;
-         this.form.get('veCredit1')?.setValue(this.form.get('ttc')?.value / calVeCredit1);
-         this.form.get('veCredit2')?.setValue(this.form.get('ttc')?.value / (calVeCredit1 * 0.1));
+         this.form.get('veCredit1')?.setValue((this.form.get('ttc')?.value / calVeCredit1).toFixed(2));
+         this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0.1)).toFixed(2));
          this.form.get('veDebit1')?.setValue(0);
          this.form.get('veDebit2')?.setValue(0);
         }
         if(this.form.get('TauxTva')?.value == "CLIENT 5.5%"){
          const calVeCredit1 = 1.055;
-         this.form.get('veCredit1')?.setValue(this.form.get('ttc')?.value / calVeCredit1);
-         this.form.get('veCredit2')?.setValue(this.form.get('ttc')?.value / (calVeCredit1 * 0.055));
+         this.form.get('veCredit1')?.setValue((this.form.get('ttc')?.value / calVeCredit1).toFixed(2));
+         this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0.055)).toFixed(2));
          this.form.get('veDebit1')?.setValue(0);
          this.form.get('veDebit2')?.setValue(0);
         }
@@ -608,23 +608,23 @@ export class ComptaComponent implements OnInit {
 
       if(this.form.get('TauxTva')?.value == "CLIENT 20%"){
         const calAcCredit1 = 1.2;
-        this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value / calAcCredit1);
-        this.form.get('veDebit2')?.setValue(this.form.get('ttc')?.value / (calAcCredit1 * 0.2));
+        this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
+        this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0.2)).toFixed(2));
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
 
        }
        if(this.form.get('TauxTva')?.value == "CLIENT 10%"){
         const calAcCredit1 = 1.;
-        this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value / calAcCredit1);
-        this.form.get('veDebit2')?.setValue(this.form.get('ttc')?.value / (calAcCredit1 * 0.1));
+        this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
+        this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0.1)).toFixed(2));
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
        }
        if(this.form.get('TauxTva')?.value == "CLIENT 5.5%"){
         const calAcCredit1 = 1.055;
-        this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value / calAcCredit1);
-        this.form.get('veDebit2')?.setValue(this.form.get('ttc')?.value / (calAcCredit1 * 0.055));
+        this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
+        this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0.055)).toFixed(2));
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
        }
@@ -746,16 +746,16 @@ export class ComptaComponent implements OnInit {
   calculeCompta(val: any) {
 
     if (val == "CLIENT 20%") {
-      this.Tva = (this.form.get('ttc')?.value / (1.2)) * (0.2);
-      this.Mht = (this.form.get('ttc')?.value / this.Tva)
+      this.Tva = ((this.form.get('ttc')?.value / (1.2)) * (0.2)).toFixed(2);
+      this.Mht = (this.form.get('ttc')?.value / this.Tva).toFixed(2);
     }
     if (val == "CLIENT 10%") {
-      this.Tva = (this.form.get('ttc')?.value / (1.1)) * (0.1);
-      this.Mht = (this.form.get('ttc')?.value / this.Tva)
+      this.Tva = ((this.form.get('ttc')?.value / (1.1)) * (0.1)).toFixed(2);
+      this.Mht = (this.form.get('ttc')?.value / this.Tva).toFixed(2);
 
     }
     if (val == "CLIENT 5.5%") {
-      this.Tva = (this.form.get('ttc')?.value / (1.055)) * (0.055);
+      this.Tva = ((this.form.get('ttc')?.value / (1.055)) * (0.055)).toFixed(2);
       this.Mht = (this.form.get('ttc')?.value / this.Tva)
 
     }
