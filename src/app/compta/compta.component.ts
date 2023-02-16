@@ -62,11 +62,10 @@ export class ComptaComponent implements OnInit {
   pdfSrc: any = '';
 
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private excelService: ExcelService,
     // private sessionStorage: SessionStorageService
-    )
-    {
+  ) {
     this.form = new FormGroup({
     });
   }
@@ -686,11 +685,11 @@ export class ComptaComponent implements OnInit {
 
 
   displayImage(event: Event) {
-    console.log(event);
     const reader = new FileReader();
     const files = (event?.target as HTMLInputElement).files;
-    console.log(files);
 
+    this.imageSrc = '';
+    this.pdfSrc = '';
     if (files) {
       const file = files[0];
       if (file.type === 'application/pdf') {
