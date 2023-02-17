@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  NODE_VERSION: 19
+  NODE_VERSION: latest
 
 jobs:
   build:
@@ -31,10 +31,10 @@ jobs:
 
     - name: Build Angular app
       run: |
-        npm run build:prod --outpu-path dis/prod
+        npm run build:prod --outpu-path docs
 
     - name: Deploy to Github Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: dist/prod
+        publish_dir: docs
