@@ -681,14 +681,22 @@ export class ComptaComponent implements OnInit {
 
   export() {
     console.log("=========", this.results);
-    
+    let body = [['date', 'journal', 'compte', 'numéro de pièces', 'libellé', 'Debit', 'Credit']];
+
+    this.results.forEach((item: User) => {
+      body.push(
+        [item.date, item.sousClasse, item.compte, item.fileName, item.fournisseur, item.veTtc, item.acTtc],
+        [item.date, item.sousClasse, item.nature, item.fileName, item.fournisseur, item.veDebit1, item.veCredit1],
+        [item.date, item.sousClasse, item.TauxTva, item.fileName, item.fournisseur, item.veDebit2, item.veCredit2]
+      )
+    })
     const data = [
-      ['date','journal','compte','numéro de pièces','libellé','Debit','Credit'],
-      [this.results[0].date,this.results[0].sousClasse,this.results[0].compte,this.results[0].fileName,this.results[0].fournisseur,this.results[0].veTtc,this.results[0].acTtc],
-      [this.results[0].date,this.results[0].sousClasse,this.results[0].nature,this.results[0].fileName,this.results[0].fournisseur,this.results[0].veDebit1,this.results[0].veCredit1],
-      [this.results[0].date,this.results[0].sousClasse,this.results[0].TauxTva,this.results[0].fileName,this.results[0].fournisseur,this.results[0].veDebit2,this.results[0].veCredit2],
+      ['date', 'journal', 'compte', 'numéro de pièces', 'libellé', 'Debit', 'Credit'],
+      [this.results[0].date, this.results[0].sousClasse, this.results[0].compte, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veTtc, this.results[0].acTtc],
+      [this.results[0].date, this.results[0].sousClasse, this.results[0].nature, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit1, this.results[0].veCredit1],
+      [this.results[0].date, this.results[0].sousClasse, this.results[0].TauxTva, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit2, this.results[0].veCredit2],
     ]
-    this.excelService.exportFromArray(data);
+    this.excelService.exportFromArray(body);
   }
 
 
