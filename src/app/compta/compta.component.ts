@@ -72,8 +72,8 @@ export class ComptaComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      nom: [''],
-      prenom: [''],
+      // nom: [''],
+      // prenom: [''],
       ttc: [''],
       parentClasse: [''],
       sousClasse: [''],
@@ -680,7 +680,15 @@ export class ComptaComponent implements OnInit {
   }
 
   export() {
-    this.excelService.exportFromArray(this.results);
+    console.log("=========", this.results);
+    
+    const data = [
+      ['date','journal','compte','numéro de pièces','libellé','Debit','Credit'],
+      [this.results[0].date,this.results[0].sousClasse,this.results[0].compte,this.results[0].fileName,this.results[0].fournisseur,this.results[0].veTtc,this.results[0].acTtc],
+      [this.results[0].date,this.results[0].sousClasse,this.results[0].nature,this.results[0].fileName,this.results[0].fournisseur,this.results[0].veDebit1,this.results[0].veCredit1],
+      [this.results[0].date,this.results[0].sousClasse,this.results[0].TauxTva,this.results[0].fileName,this.results[0].fournisseur,this.results[0].veDebit2,this.results[0].veCredit2],
+    ]
+    this.excelService.exportFromArray(data);
   }
 
 
