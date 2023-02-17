@@ -695,6 +695,7 @@ export class ComptaComponent implements OnInit {
       [this.results[0].date, this.results[0].sousClasse, this.results[0].compte, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veTtc, this.results[0].acTtc],
       [this.results[0].date, this.results[0].sousClasse, this.results[0].nature, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit1, this.results[0].veCredit1],
       [this.results[0].date, this.results[0].sousClasse, this.results[0].TauxTva, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit2, this.results[0].veCredit2],
+
     ]
     this.excelService.exportFromArray(body);
   }
