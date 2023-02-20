@@ -99,7 +99,6 @@ export class ComptaComponent implements OnInit {
     });
 
     // const pw = this.sessionStorage.retrieve('password');
-    // console.log('Logged in as ' + pw);
 
 
     this.listeClass = [
@@ -577,7 +576,6 @@ export class ComptaComponent implements OnInit {
 
   submitForm() {
     //@ts-ignore
-    // console.log('aaaaaaa',this.form);
 
     // ===========set valeur vente et achat================
     if (this.form.get('sousClasse')?.value == "VENTES") {
@@ -673,14 +671,12 @@ export class ComptaComponent implements OnInit {
 
 
     this.results.push(this.form.value);
-    console.log('------------', this.results);
     this.form.reset();
 
 
   }
 
   export() {
-    console.log("=========", this.results);
     let body = [['date', 'journal', 'compte', 'numéro de pièces', 'libellé', 'Debit', 'Credit']];
 
     this.results.forEach((item: User) => {
@@ -705,21 +701,29 @@ export class ComptaComponent implements OnInit {
     const reader = new FileReader();
     const files = (event?.target as HTMLInputElement).files;
 
-    this.imageSrc = '';
-    this.pdfSrc = '';
+    this.resetFile();
+
     if (files) {
-      const file = files[0];
-      if (file.type === 'application/pdf') {
+      const firstFile = files[0];
+      //@ts-ignore
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e: any) => {
+          this.images.push(e.target.result);
+        };
+      }
+      if (firstFile.type === 'application/pdf') {
 
         const fileReader = new FileReader();
         fileReader.onload = () => {
           this.pdfSrc = fileReader.result;
         };
-        fileReader.readAsArrayBuffer(file);
+        fileReader.readAsArrayBuffer(firstFile);
 
       } else {
-        reader.readAsDataURL(file);
-        const name = file.name;
+        reader.readAsDataURL(firstFile);
+        const name = firstFile.name;
         this.fileName = name.split('.')[0];
 
         reader.onload = (e) => {
@@ -747,23 +751,45 @@ export class ComptaComponent implements OnInit {
     }
   }
 
-  showImage(index: number): void {
-    this.currentIndex = index;
-    this.selectedImage = this.images[index];
+
+  setCurrentFile() {
+    if (this.selectedImage.split(';')[0].includes('pdf')) {
+      this.pdfSrc = this.selectedImage;
+    } else {
+      this.imageSrc = this.selectedImage;
+    }
   }
 
+  showImage(index: number): void {
+    this.resetFile();
+    this.currentIndex = index;
+    this.selectedImage = this.images[index];
+    this.setCurrentFile();
+  }
+
+
+
   prevImage(): void {
+    this.resetFile();
     if (this.currentIndex > 0) {
       this.currentIndex--;
       this.selectedImage = this.images[this.currentIndex];
     }
+    this.setCurrentFile();
   }
 
   nextImage(): void {
+    this.resetFile();
     if (this.currentIndex < this.images.length - 1) {
       this.currentIndex++;
       this.selectedImage = this.images[this.currentIndex];
     }
+    this.setCurrentFile();
+  }
+
+  resetFile() {
+    this.imageSrc = '';
+    this.pdfSrc = '';
   }
 
 
@@ -797,13 +823,10 @@ export class ComptaComponent implements OnInit {
       this.Mht = (this.form.get('ttc')?.value / this.Tva)
 
     }
-    console.log("tva", this.Tva);
-    console.log("Mht", this.Mht);
   }
 
   onFilePdfSelected(event: any) {
     const file = event.target.files[0];
-    console.log(file.type);
     const fileReader = new FileReader();
     fileReader.onload = () => {
       this.pdfSrc = fileReader.result;
