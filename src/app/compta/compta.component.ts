@@ -621,7 +621,7 @@ export class ComptaComponent implements OnInit {
       }     
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
         this.form.get('veDebit2')?.setValue(this.form.get('ttc')?.value);
-        this.form.get('veDebit1')?.setValue(0);
+        this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value);
         this.form.get('classe6')?.setValue(706000);
         this.form.get('TauxTva2')?.setValue('');
         this.form.get('compte')?.value();
