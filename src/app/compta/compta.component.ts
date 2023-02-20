@@ -32,6 +32,9 @@ interface User {
   acDebit1: any;
   acDebit2: any;
   classe6: any;
+  reglement: any;
+  AutreInfo: any;
+  numFac: any;
 }
 @Component({
   selector: 'app-compta',
@@ -60,6 +63,9 @@ export class ComptaComponent implements OnInit {
   fournisseur = '';
   nature: any = '';
   valueTva: any[] = [];
+  reglement: any[] = [];
+  AutreInfo: any[] = [];
+  numFac = '';
 
   images: string[] = [];
   selectedImage: string = '';
@@ -106,6 +112,9 @@ export class ComptaComponent implements OnInit {
       acDebit1: [''],
       acDebit2: [''],
       classe6: [''],
+      reglement: [''],
+      AutreInfo: [''],
+      numFac: [''],
       // Autres champs
     });
 
@@ -596,6 +605,7 @@ export class ComptaComponent implements OnInit {
 
     // ===========set valeur vente et achat================
     if (this.form.get('sousClasse')?.value == "VENTES") {
+      this.form.get('numFac')?.setValue('F0002');
       this.form.get('sousClasse')?.setValue("VE");
       this.form.get('veTtc')?.setValue(this.form.get('ttc')?.value);
       this.form.get('acTtc')?.setValue(0);
@@ -648,6 +658,7 @@ export class ComptaComponent implements OnInit {
 
     }
     if (this.form.get('sousClasse')?.value == "ACHATS") {
+      this.form.get('numFac')?.setValue('F0001');
       this.form.get('sousClasse')?.setValue("AC");
       this.form.get('acTtc')?.setValue(this.form.get('ttc')?.value);
       this.form.get('veTtc')?.setValue(0);
@@ -702,10 +713,14 @@ export class ComptaComponent implements OnInit {
 
     // ===========filename================
     this.form.get('fileName')?.setValue(this.fileName);
+    
 
     // ==============fournisseur==============
     const valFournisseur = this.form.get('fournisseur')?.value;
-    this.form.get('fournisseur')?.setValue(valFournisseur + ' ' + this.fileName);
+    const reglemt = this.form.get('reglement')?.value;
+    const info = this.form.get('AutreInfo')?.value;
+    const numFac = this.form.get('numFac')?.value;
+    this.form.get('fournisseur')?.setValue(info + ' ' + numFac + ' ' + reglemt);
 
     // ===========calcule achat================
     const calculAchat = ((this.nature + this.Tva) / this.form.get('ttc')?.value);
@@ -825,6 +840,8 @@ export class ComptaComponent implements OnInit {
   }
 
   showImage(index: number): void {
+    console.log('image', index);
+    
     this.resetFile();
     this.currentIndex = index;
     this.selectedImage = this.images[index];

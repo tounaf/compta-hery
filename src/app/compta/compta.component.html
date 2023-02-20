@@ -93,7 +93,7 @@
               <mat-icon>receipt</mat-icon>
               <span style="margin-left:10px">Numéro de facture</span>
               <mat-form-field appearance="fill" style="width: 100%;">
-                <input formControlName="fileName" [value]="fileName" matInput>
+                <input formControlName="numFac" readonly matInput>
               </mat-form-field>
             </div>
             <div class="col-md-4">
@@ -101,7 +101,7 @@
               <span style="margin-left:10px">Mode de règlement</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>votre choix</mat-label>
-                <mat-select>
+                <mat-select formControlName="reglement">
                   <span *ngFor="let lgt of listeModeReglement, let j = index">
                     <mat-option [value]="lgt.value">{{lgt.value}}</mat-option>
                   </span>
@@ -118,7 +118,7 @@
               <mat-icon>info</mat-icon>
               <span style="margin-left:10px">Autre info</span>
               <mat-form-field appearance="fill" style="width: 100%;">
-                <input matInput type="text">
+                <input formControlName="AutreInfo" matInput type="text">
               </mat-form-field>
             </div>
             <div class="col-md-6">
@@ -206,8 +206,8 @@
             <td>{{item.compte}}</td>
             <td>{{item.fileName}}</td>
             <td>{{item.fournisseur}}</td>
-            <td>{{item.veTtc}}<input class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc" [(ngModel)]="currentVeTtc" (input)="vedebit1(i)" /></td>
-            <td>{{item.acTtc}}<input class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc" (input)="vedebit1(i)" /></td>
+            <td><input class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc" [(ngModel)]="currentVeTtc" (input)="vedebit1(i)" /></td>
+            <td>{{item.acTtc}}</td>
           </tr>
           <tr>
             <td>{{item.date}}</td>
