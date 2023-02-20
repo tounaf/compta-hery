@@ -10,8 +10,10 @@ interface User {
   ttc: any;
   parentClasse: string;
   sousClasse: string;
+  sousClasse2: string;
   compte: string;
   date: any;
+  date2: any;
   fileName: any;
   fournisseur: any;
   achat: any;
@@ -20,6 +22,7 @@ interface User {
   acTtc: any;
   nature: any;
   TauxTva: any;
+  TauxTva2: any;
   veCredit1: any;
   veCredit2: any;
   veDebit1: any;
@@ -28,6 +31,7 @@ interface User {
   acCredit2: any;
   acDebit1: any;
   acDebit2: any;
+  classe6: any;
 }
 @Component({
   selector: 'app-compta',
@@ -78,8 +82,10 @@ export class ComptaComponent implements OnInit {
       ttc: [''],
       parentClasse: [''],
       sousClasse: [''],
+      sousClasse2: [''],
       compte: [''],
       date: [''],
+      date2: [''],
       fileName: [''],
       fournisseur: [''],
       nature: [''],
@@ -88,6 +94,7 @@ export class ComptaComponent implements OnInit {
       veTtc: [''],
       acTtc: [''],
       TauxTva: [''],
+      TauxTva2: [''],
       veCredit1: [''],
       veCredit2: [''],
       veDebit1: [''],
@@ -96,6 +103,7 @@ export class ComptaComponent implements OnInit {
       acCredit2: [''],
       acDebit1: [''],
       acDebit2: [''],
+      classe6: [''],
       // Autres champs
     });
 
@@ -585,7 +593,7 @@ export class ComptaComponent implements OnInit {
 
   submitForm() {
     //@ts-ignore
-    // console.log('aaaaaaa',this.form);
+    console.log('aaaaaaa',this.form.get('TauxTva')?.value);
 
     // ===========set valeur vente et achat================
     if (this.form.get('sousClasse')?.value == "VENTES") {
@@ -613,13 +621,16 @@ export class ComptaComponent implements OnInit {
         this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0.055)).toFixed(2));
         this.form.get('veDebit1')?.setValue(0);
         this.form.get('veDebit2')?.setValue(0);
-      }
+      }     
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
-        const calVeCredit1 = 0;
-        this.form.get('veCredit1')?.setValue((this.form.get('ttc')?.value / calVeCredit1).toFixed(2));
-        this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0)).toFixed(2));
+        this.form.get('veDebit2')?.setValue(this.form.get('ttc')?.value);
         this.form.get('veDebit1')?.setValue(0);
-        this.form.get('veDebit2')?.setValue(0);
+        this.form.get('classe6')?.setValue(706000);
+        this.form.get('TauxTva2')?.setValue('');
+        this.form.get('compte')?.value();
+        this.form.get('sousClasse2')?.setValue('');
+        this.form.get('date2')?.setValue('');
+
       }
 
 
@@ -632,31 +643,48 @@ export class ComptaComponent implements OnInit {
       if (this.form.get('TauxTva')?.value == "CLIENT 20%") {
         const calAcCredit1 = 1.2;
         this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
-        this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0.2)).toFixed(2));
+        this.form.get('veDebit2')?.setValue(((this.form.get('ttc')?.value / (1.2)) * (0.2)).toFixed(2));
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
-
+        this.form.get('TauxTva')?.setValue(4456);
+        this.form.get('classe6')?.setValue(606300);
+        this.form.get('sousClasse2')?.setValue('AC');
+        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('TauxTva2')?.setValue( this.form.get('TauxTva')?.value);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 10%") {
         const calAcCredit1 = 1.1;
         this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
-        this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0.1)).toFixed(2));
+        this.form.get('veDebit2')?.setValue(((this.form.get('ttc')?.value / (1.1)) * (0.1)).toFixed(2));
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
+        this.form.get('TauxTva')?.setValue(4456);
+        this.form.get('classe6')?.setValue(606300);
+        this.form.get('sousClasse2')?.setValue('AC');
+        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('TauxTva2')?.setValue( this.form.get('TauxTva')?.value);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 5.5%") {
         const calAcCredit1 = 1.055;
         this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
-        this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0.055)).toFixed(2));
+        this.form.get('veDebit2')?.setValue(((this.form.get('ttc')?.value / (1.055)) * (0.055)).toFixed(2));
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
+        this.form.get('TauxTva')?.setValue(4456);
+        this.form.get('classe6')?.setValue(606300);
+        this.form.get('sousClasse2')?.setValue('AC');
+        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('TauxTva2')?.setValue( this.form.get('TauxTva')?.value);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
-        const calAcCredit1 = 1;
-        this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
-        this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0)).toFixed(2));
+        this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value);
         this.form.get('veCredit1')?.setValue(0);
-        this.form.get('veCredit2')?.setValue(0);
+        this.form.get('classe6')?.setValue(606300);
+        this.form.get('TauxTva2')?.setValue('');
+        this.form.get('compte')?.value();
+        this.form.get('sousClasse2')?.setValue('');
+        this.form.get('date2')?.setValue('');
+
       }
     }
 
@@ -676,27 +704,21 @@ export class ComptaComponent implements OnInit {
       const client = 0.2;
       const calculVente = ((client) / (this.nature + this.Tva));
       this.form.get('vente')?.setValue(calculVente);
-      const a = this.form.get('TauxTva')?.setValue(445712);
+      // this.form.get('TauxTva')?.setValue(445712);
 
     }
     if ((this.form.get('compte')?.value) || (this.form.get('TauxTva')?.value) == "CLIENT 10%") {
       const client = 0.1;
       const calculVente = ((client) / (this.nature + this.Tva));
       this.form.get('vente')?.setValue(calculVente);
-      this.form.get('TauxTva')?.setValue(445710);
+      // this.form.get('TauxTva')?.setValue(445710);
     }
     if ((this.form.get('compte')?.value) || (this.form.get('TauxTva')?.value) == "CLIENT 5.5%") {
       const client = 0.05;
       const calculVente = ((client) / (this.nature + this.Tva));
       this.form.get('vente')?.setValue(calculVente);
-      this.form.get('TauxTva')?.setValue(445715);
     }
-    if ((this.form.get('compte')?.value) || (this.form.get('TauxTva')?.value) == "CLIENT 0%") {
-      const client = 0;
-      const calculVente = ((client) / (this.nature + this.Tva));
-      this.form.get('vente')?.setValue(calculVente);
-      this.form.get('TauxTva')?.setValue(0);
-    }
+
 
 
 
@@ -808,11 +830,11 @@ export class ComptaComponent implements OnInit {
       ];
     }
 
-    if(this.form.get("sousClasse")?.value == "ACHATS"){
-      this.valueTva = [{value: 'fournisseur'}];
-    }else{
-      this.valueTva = this.listeChoix1;
-    }
+    // if(this.form.get("sousClasse")?.value == "ACHATS"){
+    //   this.valueTva = [{value: 'fournisseur'}];
+    // }else{
+    //   this.valueTva = this.listeChoix1;
+    // }
   }
 
   calculeCompta(val: any) {
@@ -828,7 +850,7 @@ export class ComptaComponent implements OnInit {
     }
     if (val == "CLIENT 5.5%") {
       this.Tva = ((this.form.get('ttc')?.value / (1.055)) * (0.055)).toFixed(2);
-      this.Mht = (this.form.get('ttc')?.value / this.Tva)
+      this.Mht = (this.form.get('ttc')?.value / this.Tva).toFixed(2);
 
     }
     if (val == "CLIENT 0%") {
