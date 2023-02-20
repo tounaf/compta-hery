@@ -591,11 +591,6 @@ export class ComptaComponent implements OnInit {
   }
 
   submitForm() {
-    //@ts-ignore
-<<<<<<< HEAD
-    console.log('aaaaaaa',this.form.get('TauxTva')?.value);
-=======
->>>>>>> cef18303bef6961b9cf0ff779aa5b236f6312cc5
 
     // ===========set valeur vente et achat================
     if (this.form.get('sousClasse')?.value == "VENTES") {
@@ -860,19 +855,11 @@ export class ComptaComponent implements OnInit {
       ];
     }
 
-<<<<<<< HEAD
     // if(this.form.get("sousClasse")?.value == "ACHATS"){
     //   this.valueTva = [{value: 'fournisseur'}];
     // }else{
     //   this.valueTva = this.listeChoix1;
     // }
-=======
-    if (this.form.get("sousClasse")?.value == "ACHATS") {
-      this.valueTva = [{ value: 'fournisseur' }];
-    } else {
-      this.valueTva = this.listeChoix1;
-    }
->>>>>>> cef18303bef6961b9cf0ff779aa5b236f6312cc5
   }
 
   calculeCompta(val: any) {
