@@ -11,7 +11,14 @@
 <body>
 
   <div class="row mt-4" style="margin-left: 1%; border: 4px solid rgb(184, 182, 182);">
-    <div class="col-md-1"></div>
+    <div class="col-md-1">
+      <div>
+        <div *ngFor="let image of images; let i = index" [style.borderStyle]="i === currentIndex ? 'solid' : 'none'"
+          [style.display]="'inline-block'">
+          <img src="{{image}}" (click)="showImage(i)" width="100" height="100">
+        </div>
+      </div>
+    </div>
     <div class="col-md-6" style="border: 4px solid rgb(184, 182, 182);">
       <!-- Formulaire de saisie -->
       <div class="form-container mt-4" fxFlex="50">
@@ -236,14 +243,7 @@
         <button (click)="prevImage()">Previous</button>
         <button (click)="nextImage()">Next</button>
       </div>
-      <div>
-        <div *ngFor="let image of images; let i = index" [style.borderStyle]="i === currentIndex ? 'solid' : 'none'"
-          [style.display]="'inline-block'">
-          <img src="{{image}}" (click)="showImage(i)" width="100" height="100">
-        </div>
-      </div>
-
-
+     
       <img *ngIf="imageSrc" alt="myimage" class="img-fluid" [src]="imageSrc" width="100%" height="100%" />
       <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [rotation]="0" [original-size]="false" [show-all]="true"
         [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
