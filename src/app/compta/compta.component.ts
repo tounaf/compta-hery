@@ -753,8 +753,8 @@ export class ComptaComponent implements OnInit {
     const data = [
       ['date', 'journal', 'compte', 'numéro de pièces', 'libellé', 'Debit', 'Credit'],
       [this.results[0].date, this.results[0].sousClasse, this.results[0].compte, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veTtc, this.results[0].acTtc],
-      [this.results[0].date, this.results[0].sousClasse, this.results[0].nature, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit1, this.results[0].veCredit1],
-      [this.results[0].date, this.results[0].sousClasse, this.results[0].TauxTva, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit2, this.results[0].veCredit2],
+      [this.results[0].date, this.results[0].sousClasse, this.results[0].classe6, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit1, this.results[0].veCredit1],
+      [this.results[0].date2, this.results[0].sousClasse2, this.results[0].TauxTva2, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit2, this.results[0].veCredit2],
 
     ]
     this.excelService.exportFromArray(body);
