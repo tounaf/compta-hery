@@ -192,14 +192,14 @@
           <th>Debit</th>
           <th>Credit</th>
         </tr>
-        <tbody *ngFor="let item of results">
+        <tbody *ngFor="let item of results; let i = index">
           <tr>
             <td>{{item.date}}</td>
             <td>{{item.sousClasse}}</td>
             <td>{{item.compte}}</td>
             <td>{{item.fileName}}</td>
             <td>{{item.fournisseur}}</td>
-            <td>{{item.veTtc}}</td>
+            <td>{{item.veTtc}}<input [value]="item.veTtc" [(ngModel)]="currentVeTtc" (input)="vedebit1(i)" /></td>
             <td>{{item.acTtc}}</td>
           </tr>
           <tr>

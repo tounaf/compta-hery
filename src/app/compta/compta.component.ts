@@ -62,6 +62,8 @@ export class ComptaComponent implements OnInit {
   currentIndex = 0;
   pdfSrc: any = '';
 
+  currentVeTtc = ''
+
   constructor(
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
@@ -876,6 +878,10 @@ export class ComptaComponent implements OnInit {
       this.pdfSrc = fileReader.result;
     };
     fileReader.readAsArrayBuffer(file);
+  }
+
+  vedebit1(index: number) {
+    this.results[index].veTtc = this.currentVeTtc
   }
 
 
