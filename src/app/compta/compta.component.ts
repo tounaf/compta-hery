@@ -66,6 +66,8 @@ export class ComptaComponent implements OnInit {
   currentIndex = 0;
   pdfSrc: any = '';
 
+  currentVeTtc = ''
+
   constructor(
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
@@ -600,28 +602,41 @@ export class ComptaComponent implements OnInit {
       if (this.form.get('TauxTva')?.value == "CLIENT 20%") {
         const calVeCredit1 = 1.2;
         this.form.get('veCredit1')?.setValue((this.form.get('ttc')?.value / calVeCredit1).toFixed(2));
-        this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0.2)).toFixed(2));
+        this.form.get('veCredit2')?.setValue(((this.form.get('ttc')?.value / (1.2)) * (0.2)).toFixed(2));
         this.form.get('veDebit1')?.setValue(0);
         this.form.get('veDebit2')?.setValue(0);
+        this.form.get('sousClasse2')?.setValue('VE');
+        this.form.get('TauxTva2')?.setValue(4457);
+        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('classe6')?.setValue(706000);
 
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 10%") {
-        const calVeCredit1 = 1.;
+        const calVeCredit1 = 1.1;
         this.form.get('veCredit1')?.setValue((this.form.get('ttc')?.value / calVeCredit1).toFixed(2));
-        this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0.1)).toFixed(2));
+        this.form.get('veCredit2')?.setValue(((this.form.get('ttc')?.value / (1.1)) * (0.1)).toFixed(2));
         this.form.get('veDebit1')?.setValue(0);
         this.form.get('veDebit2')?.setValue(0);
+        this.form.get('sousClasse2')?.setValue('VE');
+        this.form.get('TauxTva2')?.setValue(4457);
+        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('classe6')?.setValue(706000);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 5.5%") {
         const calVeCredit1 = 1.055;
         this.form.get('veCredit1')?.setValue((this.form.get('ttc')?.value / calVeCredit1).toFixed(2));
-        this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0.055)).toFixed(2));
+        this.form.get('veCredit2')?.setValue(((this.form.get('ttc')?.value / (1.055)) * (0.055)).toFixed(2));
         this.form.get('veDebit1')?.setValue(0);
         this.form.get('veDebit2')?.setValue(0);
+        this.form.get('sousClasse2')?.setValue('VE');
+        this.form.get('TauxTva2')?.setValue(4457);
+        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('classe6')?.setValue(706000);
       }     
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
-        this.form.get('veDebit2')?.setValue(this.form.get('ttc')?.value);
-        this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value);
+        this.form.get('veCredit1')?.setValue(this.form.get('ttc')?.value);
+        this.form.get('veDebit1')?.setValue(0);
+        this.form.get('fournisseur')?.setValue('');
         this.form.get('classe6')?.setValue(706000);
         this.form.get('TauxTva2')?.setValue('');
         this.form.get('compte')?.value();
@@ -681,7 +696,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('compte')?.value();
         this.form.get('sousClasse2')?.setValue('');
         this.form.get('date2')?.setValue('');
-
+        this.form.get('fournisseur')?.setValue('');
       }
     }
 
@@ -897,6 +912,10 @@ export class ComptaComponent implements OnInit {
       this.pdfSrc = fileReader.result;
     };
     fileReader.readAsArrayBuffer(file);
+  }
+
+  vedebit1(index: number) {
+    this.results[index].veTtc = this.currentVeTtc
   }
 
 

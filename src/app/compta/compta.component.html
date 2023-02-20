@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6" style="border: 4px solid rgb(184, 182, 182);">
+    <div class="col-md-7" style="border: 4px solid rgb(184, 182, 182);">
       <!-- Formulaire de saisie -->
       <div class="form-container mt-4" fxFlex="50">
         <form [formGroup]="form">
@@ -199,14 +199,14 @@
           <th>Debit</th>
           <th>Credit</th>
         </tr>
-        <tbody *ngFor="let item of results">
+        <tbody *ngFor="let item of results; let i = index">
           <tr>
             <td>{{item.date}}</td>
             <td>{{item.sousClasse}}</td>
             <td>{{item.compte}}</td>
             <td>{{item.fileName}}</td>
             <td>{{item.fournisseur}}</td>
-            <td>{{item.veTtc}}</td>
+            <td>{{item.veTtc}}<input [placeholder]="item.veTtc" [value]="item.veTtc" [(ngModel)]="currentVeTtc" (input)="vedebit1(i)" /></td>
             <td>{{item.acTtc}}</td>
           </tr>
           <tr>
@@ -237,7 +237,7 @@
       </div>
     </div>
 
-    <div class="col-md-5" style="border: 4px solid rgb(184, 182, 182); background-color: rgb(149, 198, 244);">
+    <div class="col-md-4" style="border: 4px solid rgb(184, 182, 182); background-color: rgb(149, 198, 244);">
 
       <div>
         <button (click)="prevImage()">Previous</button>
