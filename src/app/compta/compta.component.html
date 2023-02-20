@@ -165,7 +165,7 @@
               <span style="margin-left:10px">Taux Tva</span>
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-select formControlName="TauxTva">
-                  <span *ngFor="let choix1 of listeChoix1, let a = index">
+                  <span *ngFor="let choix1 of valueTva, let a = index">
                     <mat-option (click)="calculeCompta(choix1.value)"
                       [value]="choix1.value">{{choix1.value}}</mat-option>
                   </span>

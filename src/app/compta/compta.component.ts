@@ -55,6 +55,7 @@ export class ComptaComponent implements OnInit {
   fileName = '';
   fournisseur = '';
   nature: any = '';
+  valueTva: any[] = [];
 
   images: string[] = [];
   selectedImage: string = '';
@@ -98,6 +99,7 @@ export class ComptaComponent implements OnInit {
       // Autres champs
     });
 
+   
     // const pw = this.sessionStorage.retrieve('password');
     // console.log('Logged in as ' + pw);
 
@@ -160,6 +162,10 @@ export class ComptaComponent implements OnInit {
       {
         id: 2,
         value: 'CLIENT 5.5%'
+      },
+      {
+        id: 3,
+        value: 'CLIENT 0%'
       }
     ]
 
@@ -573,6 +579,8 @@ export class ComptaComponent implements OnInit {
       { numero: "796000", value: "TRANSF.CHARGES FINANC." },
       { numero: "797000", value: "TRANF.CHARGES EXCEPTION." },
     ]
+
+    this.valueTva = this.listeChoix1;
   }
 
   submitForm() {
@@ -606,6 +614,13 @@ export class ComptaComponent implements OnInit {
         this.form.get('veDebit1')?.setValue(0);
         this.form.get('veDebit2')?.setValue(0);
       }
+      if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
+        const calVeCredit1 = 0;
+        this.form.get('veCredit1')?.setValue((this.form.get('ttc')?.value / calVeCredit1).toFixed(2));
+        this.form.get('veCredit2')?.setValue((this.form.get('ttc')?.value / (calVeCredit1 * 0)).toFixed(2));
+        this.form.get('veDebit1')?.setValue(0);
+        this.form.get('veDebit2')?.setValue(0);
+      }
 
 
     }
@@ -623,7 +638,7 @@ export class ComptaComponent implements OnInit {
 
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 10%") {
-        const calAcCredit1 = 1.;
+        const calAcCredit1 = 1.1;
         this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
         this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0.1)).toFixed(2));
         this.form.get('veCredit1')?.setValue(0);
@@ -633,6 +648,13 @@ export class ComptaComponent implements OnInit {
         const calAcCredit1 = 1.055;
         this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
         this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0.055)).toFixed(2));
+        this.form.get('veCredit1')?.setValue(0);
+        this.form.get('veCredit2')?.setValue(0);
+      }
+      if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
+        const calAcCredit1 = 1;
+        this.form.get('veDebit1')?.setValue((this.form.get('ttc')?.value / calAcCredit1).toFixed(2));
+        this.form.get('veDebit2')?.setValue((this.form.get('ttc')?.value / (calAcCredit1 * 0)).toFixed(2));
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
       }
@@ -668,6 +690,12 @@ export class ComptaComponent implements OnInit {
       const calculVente = ((client) / (this.nature + this.Tva));
       this.form.get('vente')?.setValue(calculVente);
       this.form.get('TauxTva')?.setValue(445715);
+    }
+    if ((this.form.get('compte')?.value) || (this.form.get('TauxTva')?.value) == "CLIENT 0%") {
+      const client = 0;
+      const calculVente = ((client) / (this.nature + this.Tva));
+      this.form.get('vente')?.setValue(calculVente);
+      this.form.get('TauxTva')?.setValue(0);
     }
 
 
@@ -779,6 +807,12 @@ export class ComptaComponent implements OnInit {
         }
       ];
     }
+
+    if(this.form.get("sousClasse")?.value == "ACHATS"){
+      this.valueTva = [{value: 'fournisseur'}];
+    }else{
+      this.valueTva = this.listeChoix1;
+    }
   }
 
   calculeCompta(val: any) {
@@ -794,6 +828,11 @@ export class ComptaComponent implements OnInit {
     }
     if (val == "CLIENT 5.5%") {
       this.Tva = ((this.form.get('ttc')?.value / (1.055)) * (0.055)).toFixed(2);
+      this.Mht = (this.form.get('ttc')?.value / this.Tva)
+
+    }
+    if (val == "CLIENT 0%") {
+      this.Tva = ((this.form.get('ttc')?.value / (1)) * (0)).toFixed(2);
       this.Mht = (this.form.get('ttc')?.value / this.Tva)
 
     }
