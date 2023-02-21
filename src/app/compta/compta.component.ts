@@ -6,8 +6,6 @@ import { Router, Params, ActivatedRoute } from '@angular/router';
 
 
 interface User {
-  // nom: string;
-  // prenom: string;
   ttc: any;
   parentClasse: string;
   sousClasse: string;
@@ -36,6 +34,7 @@ interface User {
   reglement: any;
   AutreInfo: any;
   numFac: any;
+  fournisseur2:any;
 }
 @Component({
   selector: 'app-compta',
@@ -69,6 +68,7 @@ export class ComptaComponent implements OnInit {
   numFac = '';
   indexImage: any = '';
   listImage: any = '';
+  fournisseur2: any = '';
 
   images: string[] = [];
   selectedImage: string = '';
@@ -119,6 +119,7 @@ export class ComptaComponent implements OnInit {
       reglement: [''],
       AutreInfo: [''],
       numFac: [''],
+      fournisseur2: [''],
       // Autres champs
     });
 
@@ -609,7 +610,7 @@ export class ComptaComponent implements OnInit {
 
     // ===========set valeur vente et achat================
     if (this.form.get('sousClasse')?.value == "VENTES") {
-      this.form.get('numFac')?.setValue(this.form.get('fournisseur')?.value);
+      // this.form.get('numFac')?.setValue(this.form.get('fournisseur')?.value);
       this.form.get('sousClasse')?.setValue("VE");
       this.form.get('veTtc')?.setValue(this.form.get('ttc')?.value);
       this.form.get('acTtc')?.setValue(0);
@@ -656,13 +657,14 @@ export class ComptaComponent implements OnInit {
         this.form.get('compte')?.value();
         this.form.get('sousClasse2')?.setValue('');
         this.form.get('date2')?.setValue('');
-
+        this.form.get('fournisseur2')?.setValue('');
+        this.form.get('fileName')?.setValue('');
       }
 
 
     }
     if (this.form.get('sousClasse')?.value == "ACHATS") {
-      this.form.get('numFac')?.setValue(this.form.get('fournisseur')?.value);
+      // this.form.get('numFac')?.setValue(this.form.get('fournisseur')?.value);
       this.form.get('sousClasse')?.setValue("AC");
       this.form.get('acTtc')?.setValue(this.form.get('ttc')?.value);
       this.form.get('veTtc')?.setValue(0);
@@ -711,7 +713,8 @@ export class ComptaComponent implements OnInit {
         this.form.get('compte')?.value();
         this.form.get('sousClasse2')?.setValue('');
         this.form.get('date2')?.setValue('');
-        this.form.get('fournisseur')?.setValue('');
+        this.form.get('fournisseur2')?.setValue('');
+        this.form.get('fileName')?.setValue('');
       }
     }
 
@@ -723,8 +726,9 @@ export class ComptaComponent implements OnInit {
     const valFournisseur = this.form.get('fournisseur')?.value;
     const reglemt = this.form.get('reglement')?.value;
     const info = this.form.get('AutreInfo')?.value;
-    const numFac = this.form.get('numFac')?.value;
-    this.form.get('fournisseur')?.setValue(info + ' ' + numFac + ' ' + reglemt);
+    const numFact = this.form.get('numFac')?.value;
+    
+    this.form.get('fournisseur')?.setValue(info + ' ' + valFournisseur + ' ' + numFact + ' ' + reglemt);
 
     // ===========calcule achat================
     const calculAchat = ((this.nature + this.Tva) / this.form.get('ttc')?.value);
@@ -764,21 +768,23 @@ export class ComptaComponent implements OnInit {
 
     this.results.forEach((item: User) => {
       body.push(
-        [item.date, item.sousClasse, item.compte, item.fileName, item.fournisseur, item.veTtc, item.acTtc],
-        [item.date, item.sousClasse, item.nature, item.fileName, item.fournisseur, item.veDebit1, item.veCredit1],
-        [item.date, item.sousClasse, item.TauxTva, item.fileName, item.fournisseur, item.veDebit2, item.veCredit2]
+        [item.date, item.sousClasse, item.compte, item.fileName, item.fournisseur, item.veTtc, item.acTtc]
       )
-    })
-    const data = [
-      ['date', 'journal', 'compte', 'numéro de pièces', 'libellé', 'Debit', 'Credit'],
-      [this.results[0].date, this.results[0].sousClasse, this.results[0].compte, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veTtc, this.results[0].acTtc],
-      [this.results[0].date, this.results[0].sousClasse, this.results[0].classe6, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit1, this.results[0].veCredit1],
-      [this.results[0].date2, this.results[0].sousClasse2, this.results[0].TauxTva2, this.results[0].fileName, this.results[0].fournisseur, this.results[0].veDebit2, this.results[0].veCredit2],
+   
+      body.push(
+        [item.date, item.sousClasse, item.classe6, item.fileName, item.fournisseur, item.veDebit1, item.veCredit1]
+      )
+     
+     if (this.form.get('TauxTva')?.value != '0%') {
+     body.push(
+         [item.date2, item.sousClasse2, item.TauxTva2, item.fileName, item.fournisseur2, item.veDebit2, item.veCredit2]
+      )
+     }
 
-    ]
-    this.excelService.exportFromArray(body);
-    location.reload();
-    this.router.navigateByUrl('compta');
+      this.excelService.exportFromArray(body);
+      location.reload();
+      this.router.navigateByUrl('compta');
+    })
   }
 
   showImage(index: number): void {
@@ -786,7 +792,7 @@ export class ComptaComponent implements OnInit {
     const nomPhotos = this.listImage[this.indexImage].name;
     this.fileName = nomPhotos.split('.')[0];
 
-    // console.log(this.fileName);
+    console.log('------------',this.fileName);
 
     this.resetFile();
     this.currentIndex = index;
@@ -865,7 +871,8 @@ export class ComptaComponent implements OnInit {
       const current = this.currentIndex - 1;
       const nomPhotos = this.listImage[current].name;
       this.fileName = nomPhotos.split('.')[0];
-      // console.log("moin==========",this.fileName);
+      
+      console.log("moin==========",this.fileName);
       this.currentIndex--;
       this.selectedImage = this.images[this.currentIndex];
     }
@@ -878,7 +885,7 @@ export class ComptaComponent implements OnInit {
       const current = this.currentIndex + 1;
       const nomPhotos = this.listImage[current].name;
       this.fileName = nomPhotos.split('.')[0];
-      //  console.log("plus==========",this.fileName);
+       console.log("plus==========",this.fileName);
       this.currentIndex++;
       this.selectedImage = this.images[this.currentIndex];
     }
