@@ -778,6 +778,7 @@ export class ComptaComponent implements OnInit {
     ]
     this.excelService.exportFromArray(body);
     location.reload();
+    this.router.navigateByUrl('compta');
   }
 
   showImage(index: number): void {
