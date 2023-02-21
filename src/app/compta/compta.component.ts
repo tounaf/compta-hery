@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ExcelService } from '../excel.service';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 // import { SessionStorageService } from 'ngx-webstorage';
 
 
@@ -79,6 +80,7 @@ export class ComptaComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
+    private router: Router,
     // private sessionStorage: SessionStorageService
   ) {
     this.form = new FormGroup({
@@ -946,6 +948,10 @@ export class ComptaComponent implements OnInit {
 
   vedebit1(index: number) {
     this.results[index].veTtc = this.currentVeTtc
+  }
+
+  quiter(){
+    this.router.navigateByUrl('login')
   }
 
 

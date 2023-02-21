@@ -26,10 +26,19 @@
 
 
           <!-- ======================================================================= -->
-          <div class="image-container" fxFlex="50">
-            <input placeholder="image" type="file" (change)="displayImage($event)" accept=".jpeg, .png, .gif, .pdf"
-              capture="user" multiple />
+          <div class="row">
+            <div class="col-md-10">
+              <div class="image-container" fxFlex="50">
+                <input placeholder="image" type="file" (change)="displayImage($event)" accept=".jpeg, .png, .gif, .pdf"
+                  capture="user" multiple />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button mat-raised-button color="warn"
+                (click)="quiter()">Quiter</button>
+            </div>
           </div>
+         
 
 
           <!-- ======================================================================= -->
