@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { relative } from 'path';
+import { AuthService } from '../services/general/auth.service';
 // import { SessionStorageService } from 'ngx-webstorage';
 
 
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
     private routes: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    // private sessionStorage: SessionStorageService
+    private authService: AuthService
     ) {
     this.form = new FormGroup({ 
     });
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.checkSession();
     this.form = this.formBuilder.group({
       user: [''],
       pw: [''],
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
     const pw = this.form.get('pw')?.value;
     if(username == "admin" && pw == "admin"){
       // this.sessionStorage.store('password', pw);
+      localStorage.setItem("password", pw)
       this.router.navigateByUrl('compta');
     }else{
       this.router.navigateByUrl('login')

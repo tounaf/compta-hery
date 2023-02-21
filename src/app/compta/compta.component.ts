@@ -951,7 +951,8 @@ export class ComptaComponent implements OnInit {
   }
 
   quiter(){
-    this.router.navigateByUrl('login')
+    this.router.navigateByUrl('login');
+    localStorage.removeItem("password")
   }
 
 
