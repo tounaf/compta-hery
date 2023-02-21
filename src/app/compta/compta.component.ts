@@ -66,6 +66,8 @@ export class ComptaComponent implements OnInit {
   reglement: any[] = [];
   AutreInfo: any[] = [];
   numFac = '';
+  indexImage: any = '';
+  listImage: any = '';
 
   images: string[] = [];
   selectedImage: string = '';
@@ -775,15 +777,29 @@ export class ComptaComponent implements OnInit {
     this.excelService.exportFromArray(body);
   }
 
+  showImage(index: number): void {
+    this.indexImage = `${index}`.split(' ')[0];
+    const nomPhotos = this.listImage[this.indexImage].name;
+    this.fileName = nomPhotos.split('.')[0];
+    
+    // console.log(this.fileName);
+    
+    this.resetFile();
+    this.currentIndex = index;
+    this.selectedImage = this.images[index];
+    this.setCurrentFile();
+  }
 
   displayImage(event: Event) {
     const reader = new FileReader();
     const files = (event?.target as HTMLInputElement).files;
-
+    this.listImage = files;
+   
     this.resetFile();
 
     if (files) {
       const firstFile = files[0];
+     
       //@ts-ignore
       for (const file of files) {
         const reader = new FileReader();
@@ -839,20 +855,13 @@ export class ComptaComponent implements OnInit {
     }
   }
 
-  showImage(index: number): void {
-    console.log('image', index);
-    
-    this.resetFile();
-    this.currentIndex = index;
-    this.selectedImage = this.images[index];
-    this.setCurrentFile();
-  }
-
-
-
   prevImage(): void {
     this.resetFile();
     if (this.currentIndex > 0) {
+      const current = this.currentIndex - 1;
+      const nomPhotos = this.listImage[current].name;
+      this.fileName = nomPhotos.split('.')[0];
+      // console.log("moin==========",this.fileName);
       this.currentIndex--;
       this.selectedImage = this.images[this.currentIndex];
     }
@@ -862,6 +871,10 @@ export class ComptaComponent implements OnInit {
   nextImage(): void {
     this.resetFile();
     if (this.currentIndex < this.images.length - 1) {
+      const current = this.currentIndex + 1;
+      const nomPhotos = this.listImage[current].name;
+      this.fileName = nomPhotos.split('.')[0];
+      //  console.log("plus==========",this.fileName);
       this.currentIndex++;
       this.selectedImage = this.images[this.currentIndex];
     }
