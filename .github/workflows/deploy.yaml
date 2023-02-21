@@ -12,4 +12,6 @@ jobs:
       - name: Build app
         run: npm install && npm run build -- --prod
       - name: Deploy to Surge
+	env:
+          SURGE_TOKEN: ${{ secrets.TOKEN_SURGE }}
         run: npx surge ./dist/konta-hery --domain konta-b.surge.sh
