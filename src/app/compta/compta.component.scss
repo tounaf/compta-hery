@@ -1,3 +1,7 @@
-::ng-deep  .mat-form-field-infix {
+::ng-deep .mat-form-field-infix {
     height: 0px;
+}
+
+.form-control {
+    border: none;
 }

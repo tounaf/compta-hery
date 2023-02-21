@@ -646,7 +646,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('TauxTva2')?.setValue(4457);
         this.form.get('date2')?.setValue(this.form.get('date')?.value);
         this.form.get('classe6')?.setValue(706000);
-      }     
+      }
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
         this.form.get('veCredit1')?.setValue(this.form.get('ttc')?.value);
         this.form.get('veDebit1')?.setValue(0);
@@ -677,7 +677,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('classe6')?.setValue(606300);
         this.form.get('sousClasse2')?.setValue('AC');
         this.form.get('date2')?.setValue(this.form.get('date')?.value);
-        this.form.get('TauxTva2')?.setValue( this.form.get('TauxTva')?.value);
+        this.form.get('TauxTva2')?.setValue(this.form.get('TauxTva')?.value);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 10%") {
         const calAcCredit1 = 1.1;
@@ -689,7 +689,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('classe6')?.setValue(606300);
         this.form.get('sousClasse2')?.setValue('AC');
         this.form.get('date2')?.setValue(this.form.get('date')?.value);
-        this.form.get('TauxTva2')?.setValue( this.form.get('TauxTva')?.value);
+        this.form.get('TauxTva2')?.setValue(this.form.get('TauxTva')?.value);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 5.5%") {
         const calAcCredit1 = 1.055;
@@ -701,7 +701,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('classe6')?.setValue(606300);
         this.form.get('sousClasse2')?.setValue('AC');
         this.form.get('date2')?.setValue(this.form.get('date')?.value);
-        this.form.get('TauxTva2')?.setValue( this.form.get('TauxTva')?.value);
+        this.form.get('TauxTva2')?.setValue(this.form.get('TauxTva')?.value);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
         this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value);
@@ -717,7 +717,7 @@ export class ComptaComponent implements OnInit {
 
     // ===========filename================
     this.form.get('fileName')?.setValue(this.fileName);
-    
+
 
     // ==============fournisseur==============
     const valFournisseur = this.form.get('fournisseur')?.value;
@@ -784,9 +784,9 @@ export class ComptaComponent implements OnInit {
     this.indexImage = `${index}`.split(' ')[0];
     const nomPhotos = this.listImage[this.indexImage].name;
     this.fileName = nomPhotos.split('.')[0];
-    
+
     // console.log(this.fileName);
-    
+
     this.resetFile();
     this.currentIndex = index;
     this.selectedImage = this.images[index];
@@ -797,12 +797,12 @@ export class ComptaComponent implements OnInit {
     const reader = new FileReader();
     const files = (event?.target as HTMLInputElement).files;
     this.listImage = files;
-   
+
     this.resetFile();
 
     if (files) {
       const firstFile = files[0];
-     
+
       //@ts-ignore
       for (const file of files) {
         const reader = new FileReader();
@@ -947,11 +947,12 @@ export class ComptaComponent implements OnInit {
     fileReader.readAsArrayBuffer(file);
   }
 
-  vedebit1(index: number) {
-    this.results[index].veTtc = this.currentVeTtc
+  vedebit1($event: any, props: string, index: number) {
+    //@ts-ignore
+    this.results[index][props] = $event.value
   }
 
-  quiter(){
+  quiter() {
     this.router.navigateByUrl('login');
     localStorage.removeItem("password")
   }

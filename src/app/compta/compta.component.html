@@ -13,8 +13,8 @@
   <div class="row mt-4" style="margin-left: 1%; border: 4px solid rgb(184, 182, 182);">
     <div class="col-md-1" style="background-color: rgb(149, 198, 244);">
       <div>
-        <div  style="margin-top: 10px;" *ngFor="let image of images; let i = index" [style.borderStyle]="i === currentIndex ? 'solid' : 'none'"
-          [style.display]="'inline-block'">
+        <div style="margin-top: 10px;" *ngFor="let image of images; let i = index"
+          [style.borderStyle]="i === currentIndex ? 'solid' : 'none'" [style.display]="'inline-block'">
           <img src="{{image}}" (click)="showImage(i)" width="100%" height="100%">
         </div>
       </div>
@@ -34,11 +34,10 @@
               </div>
             </div>
             <div class="col-md-2">
-              <button mat-raised-button color="warn"
-                (click)="quiter()">Quiter</button>
+              <button mat-raised-button color="warn" (click)="quiter()">Quiter</button>
             </div>
           </div>
-         
+
 
 
           <!-- ======================================================================= -->
@@ -211,30 +210,84 @@
         <tbody *ngFor="let item of results; let i = index">
           <tr>
             <td>{{item.date}}</td>
-            <td>{{item.sousClasse}}</td>
-            <td>{{item.compte}}</td>
-            <td>{{item.fileName}}</td>
-            <td>{{item.fournisseur}}</td>
-            <td><input class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc" [(ngModel)]="currentVeTtc" (input)="vedebit1(i)" /></td>
-            <td>{{item.acTtc}}</td>
+            <td>{{item.sousClasse}}
+              <input #sousClasse class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
+                (keyup)="vedebit1(sousClasse, 'sousClasse', i)" />
+            </td>
+            <td>{{item.compte}}
+              <input #compte class="form-control" [placeholder]="item.compte" [value]="item.compte"
+                (keyup)="vedebit1(compte, 'compte', i)" />
+            </td>
+            <td>{{item.fileName}}
+              <input #fileName class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
+                (keyup)="vedebit1(fileName, 'fileName', i)" />
+            </td>
+            <td>{{item.fournisseur}}
+              <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
+                (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
+            </td>
+            <td>{{item.veTtc}}
+              <input #veTtc class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc"
+                (keyup)="vedebit1(veTtc, 'veTtc', i)" />
+            </td>
+            <td>{{item.acTtc}}
+              <input #acTtc class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
+                (keyup)="vedebit1(acTtc, 'acTtc', i)" />
+            </td>
           </tr>
           <tr>
             <td>{{item.date}}</td>
-            <td>{{item.sousClasse}}</td>
-            <td>{{item.classe6}}</td>
-            <td>{{item.fileName}}</td>
-            <td>{{item.fournisseur}}</td>
-            <td>{{item.veDebit1}}</td>
-            <td>{{item.veCredit1}}</td>
+            <td>{{item.sousClasse}}
+              <input #sousClasse class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
+                (keyup)="vedebit1(sousClasse, 'sousClasse', i)" />
+            </td>
+            <td>{{item.classe6}}
+              <input #classe6 class="form-control" [placeholder]="item.classe6" [value]="item.classe6"
+                (keyup)="vedebit1(classe6, 'classe6', i)" />
+            </td>
+            <td>{{item.fileName}}
+              <input #fileName class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
+                (keyup)="vedebit1(fileName, 'fileName', i)" />
+            </td>
+            <td>{{item.fournisseur}}
+              <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
+                (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
+            </td>
+            <td>{{item.veDebit1}}
+              <input #veDebit1 class="form-control" [placeholder]="item.veDebit1" [value]="item.veDebit1"
+                (keyup)="vedebit1(veDebit1, 'veDebit1', i)" />
+            </td>
+            <td>{{item.veCredit1}}
+              <input #veCredit1 class="form-control" [placeholder]="item.veCredit1" [value]="item.veCredit1"
+                (keyup)="vedebit1(veCredit1, 'veCredit1', i)" />
+            </td>
           </tr>
           <tr>
             <td>{{item.date2}}</td>
-            <td>{{item.sousClasse2}}</td>
-            <td>{{item.TauxTva2}}</td>
-            <td>{{item.fileName}}</td>
-            <td>{{item.fournisseur}}</td>
-            <td>{{item.veDebit2}}</td>
-            <td>{{item.veCredit2}}</td>
+            <td>{{item.sousClasse2}}
+              <input #sousClasse2 class="form-control" [placeholder]="item.sousClasse2" [value]="item.sousClasse2"
+                (keyup)="vedebit1(sousClasse2, 'sousClasse2', i)" />
+            </td>
+            <td>{{item.TauxTva2}}
+              <input #TauxTva2 class="form-control" [placeholder]="item.TauxTva2" [value]="item.TauxTva2"
+                (keyup)="vedebit1(TauxTva2, 'TauxTva2', i)" />
+            </td>
+            <td>{{item.fileName}}
+              <input #TauxTva2 class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
+                (keyup)="vedebit1(fileName, 'fileName', i)" />
+            </td>
+            <td>{{item.fournisseur}}
+              <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
+                (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
+            </td>
+            <td>{{item.veDebit2}}
+              <input #veDebit2 class="form-control" [placeholder]="item.veDebit2" [value]="item.veDebit2"
+                (keyup)="vedebit1(veDebit2, 'veDebit2', i)" />
+            </td>
+            <td>{{item.veCredit2}}
+              <input #veCredit2 class="form-control" [placeholder]="item.veCredit2" [value]="item.veCredit2"
+                (keyup)="vedebit1(veCredit2, 'veCredit2', i)" />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -252,7 +305,7 @@
         <button mat-raised-button color="primary" (click)="prevImage()">Previous</button>
         <button mat-raised-button color="primary" (click)="nextImage()" style="margin-left: 5px;">Next</button>
       </div>
-     
+
       <img *ngIf="imageSrc" alt="myimage" class="img-fluid" [src]="imageSrc" width="100%" height="100%" />
       <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [rotation]="0" [original-size]="false" [show-all]="true"
         [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
