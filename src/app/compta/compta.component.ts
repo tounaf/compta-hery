@@ -609,7 +609,7 @@ export class ComptaComponent implements OnInit {
 
     // ===========set valeur vente et achat================
     if (this.form.get('sousClasse')?.value == "VENTES") {
-      this.form.get('numFac')?.setValue('F0002');
+      this.form.get('numFac')?.setValue(this.form.get('fournisseur')?.value);
       this.form.get('sousClasse')?.setValue("VE");
       this.form.get('veTtc')?.setValue(this.form.get('ttc')?.value);
       this.form.get('acTtc')?.setValue(0);
@@ -662,7 +662,7 @@ export class ComptaComponent implements OnInit {
 
     }
     if (this.form.get('sousClasse')?.value == "ACHATS") {
-      this.form.get('numFac')?.setValue('F0001');
+      this.form.get('numFac')?.setValue(this.form.get('fournisseur')?.value);
       this.form.get('sousClasse')?.setValue("AC");
       this.form.get('acTtc')?.setValue(this.form.get('ttc')?.value);
       this.form.get('veTtc')?.setValue(0);
