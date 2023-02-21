@@ -209,82 +209,89 @@
         </tr>
         <tbody *ngFor="let item of results; let i = index">
           <tr>
-            <td>{{item.date}}</td>
-            <td>{{item.sousClasse}}
+            <td>
+              <input #date class="form-control" [placeholder]="item.date" [value]="item.date"
+                (keyup)="vedebit1(date, 'date', i)" />
+            </td>
+            <td>
               <input #sousClasse class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
                 (keyup)="vedebit1(sousClasse, 'sousClasse', i)" />
             </td>
-            <td>{{item.compte}}
+            <td>
               <input #compte class="form-control" [placeholder]="item.compte" [value]="item.compte"
                 (keyup)="vedebit1(compte, 'compte', i)" />
             </td>
-            <td>{{item.fileName}}
+            <td>
               <input #fileName class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
                 (keyup)="vedebit1(fileName, 'fileName', i)" />
             </td>
-            <td>{{item.fournisseur}}
+            <td>
               <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
                 (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
             </td>
-            <td>{{item.veTtc}}
+            <td>
               <input #veTtc class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc"
                 (keyup)="vedebit1(veTtc, 'veTtc', i)" />
             </td>
-            <td>{{item.acTtc}}
+            <td>
               <input #acTtc class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
                 (keyup)="vedebit1(acTtc, 'acTtc', i)" />
             </td>
           </tr>
           <tr>
-            <td>{{item.date}}</td>
-            <td>{{item.sousClasse}}
+            <td><input #date class="form-control" [placeholder]="item.date" [value]="item.date"
+                (keyup)="vedebit1(date, 'date', i)" /></td>
+            <td>
               <input #sousClasse class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
                 (keyup)="vedebit1(sousClasse, 'sousClasse', i)" />
             </td>
-            <td>{{item.classe6}}
+            <td>
               <input #classe6 class="form-control" [placeholder]="item.classe6" [value]="item.classe6"
                 (keyup)="vedebit1(classe6, 'classe6', i)" />
             </td>
-            <td>{{item.fileName}}
+            <td>
               <input #fileName class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
                 (keyup)="vedebit1(fileName, 'fileName', i)" />
             </td>
-            <td>{{item.fournisseur}}
+            <td>
               <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
                 (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
             </td>
-            <td>{{item.veDebit1}}
+            <td>
               <input #veDebit1 class="form-control" [placeholder]="item.veDebit1" [value]="item.veDebit1"
                 (keyup)="vedebit1(veDebit1, 'veDebit1', i)" />
             </td>
-            <td>{{item.veCredit1}}
+            <td>
               <input #veCredit1 class="form-control" [placeholder]="item.veCredit1" [value]="item.veCredit1"
                 (keyup)="vedebit1(veCredit1, 'veCredit1', i)" />
             </td>
           </tr>
           <tr>
-            <td>{{item.date2}}</td>
-            <td>{{item.sousClasse2}}
+            <td>
+              <input #date2 class="form-control" [placeholder]="item.date2" [value]="item.date2"
+                (keyup)="vedebit1(date2, 'date2', i)" />
+            </td>
+            <td>
               <input #sousClasse2 class="form-control" [placeholder]="item.sousClasse2" [value]="item.sousClasse2"
                 (keyup)="vedebit1(sousClasse2, 'sousClasse2', i)" />
             </td>
-            <td>{{item.TauxTva2}}
+            <td>
               <input #TauxTva2 class="form-control" [placeholder]="item.TauxTva2" [value]="item.TauxTva2"
                 (keyup)="vedebit1(TauxTva2, 'TauxTva2', i)" />
             </td>
-            <td>{{item.fileName}}
+            <td>
               <input #TauxTva2 class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
                 (keyup)="vedebit1(fileName, 'fileName', i)" />
             </td>
-            <td>{{item.fournisseur}}
+            <td>
               <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
                 (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
             </td>
-            <td>{{item.veDebit2}}
+            <td>
               <input #veDebit2 class="form-control" [placeholder]="item.veDebit2" [value]="item.veDebit2"
                 (keyup)="vedebit1(veDebit2, 'veDebit2', i)" />
             </td>
-            <td>{{item.veCredit2}}
+            <td>
               <input #veCredit2 class="form-control" [placeholder]="item.veCredit2" [value]="item.veCredit2"
                 (keyup)="vedebit1(veCredit2, 'veCredit2', i)" />
             </td>
