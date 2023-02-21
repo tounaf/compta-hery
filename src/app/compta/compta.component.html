@@ -101,7 +101,7 @@
               <mat-icon>receipt</mat-icon>
               <span style="margin-left:10px">Numéro de facture</span>
               <mat-form-field appearance="fill" style="width: 100%;">
-                <input formControlName="numFac" readonly matInput>
+                <input formControlName="numFac" matInput>
               </mat-form-field>
             </div>
             <div class="col-md-4">
@@ -266,7 +266,7 @@
                 (keyup)="vedebit1(veCredit1, 'veCredit1', i)" />
             </td>
           </tr>
-          <tr>
+          <tr *ngIf="(item.TauxTva != 'CLIENT 0%')">
             <td>
               <input #date2 class="form-control" [placeholder]="item.date2" [value]="item.date2"
                 (keyup)="vedebit1(date2, 'date2', i)" />
@@ -284,7 +284,7 @@
                 (keyup)="vedebit1(fileName, 'fileName', i)" />
             </td>
             <td>
-              <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
+              <input #fournisseur class="form-control" [placeholder]="item.fournisseur2" [value]="item.fournisseur2"
                 (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
             </td>
             <td>
