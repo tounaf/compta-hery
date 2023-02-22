@@ -619,7 +619,7 @@ export class ComptaComponent implements OnInit {
     const info = this.form.get('AutreInfo')?.value;
     const numFact = this.form.get('numFac')?.value;
 
-    this.form.get('fournisseur')?.setValue(info + ' ' + valFournisseur + ' ' + numFact + ' ' + reglemt);
+    this.form.get('fournisseur')?.setValue(valFournisseur + ' ' + numFact + ' ' + reglemt + ' ' + info);
 
 
     // ===========filename================
