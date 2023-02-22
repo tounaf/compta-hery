@@ -34,7 +34,7 @@ interface User {
   reglement: any;
   AutreInfo: any;
   numFac: any;
-  fournisseur2:any;
+  fournisseur2: any;
   fileName2: any;
 }
 @Component({
@@ -617,13 +617,13 @@ export class ComptaComponent implements OnInit {
     const reglemt = this.form.get('reglement')?.value;
     const info = this.form.get('AutreInfo')?.value;
     const numFact = this.form.get('numFac')?.value;
-    
+
     this.form.get('fournisseur')?.setValue(info + ' ' + valFournisseur + ' ' + numFact + ' ' + reglemt);
 
 
     // ===========filename================
     this.form.get('fileName')?.setValue(this.fileName);
-    
+
     // ===========set valeur vente et achat================
     if (this.form.get('sousClasse')?.value == "VENTES") {
       // this.form.get('numFac')?.setValue(this.form.get('fournisseur')?.value);
@@ -745,7 +745,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('fileName2')?.setValue('');
       }
     }
-  
+
     // ===========calcule achat================
     const calculAchat = ((this.nature + this.Tva) / this.form.get('ttc')?.value);
     this.form.get('achat')?.setValue(calculAchat);
@@ -790,13 +790,13 @@ export class ComptaComponent implements OnInit {
       body.push(
         [item.date, item.sousClasse, item.classe6, item.fileName, item.fournisseur, item.veDebit1, item.veCredit1]
       )
-     console.log("***************",this.form.get('TauxTva')?.value);
-     
-     if (this.form.get('TauxTva')?.value != 'CLIENT 0%') {
-      body.push(
+      console.log("***************", this.form.get('TauxTva')?.value);
+
+      if (this.form.get('TauxTva')?.value != 'CLIENT 0%') {
+        body.push(
           [item.date2, item.sousClasse2, item.TauxTva2, item.fileName2, item.fournisseur2, item.veDebit2, item.veCredit2]
         )
-     }
+      }
 
       this.excelService.exportFromArray(body);
       location.reload();
@@ -991,6 +991,23 @@ export class ComptaComponent implements OnInit {
     if (this.zoomValue < 0.1) {
       this.zoomValue = 0.1;
     }
+  }
+
+  onScroll(event: any) {
+    // Calculate the zoom delta based on the scroll event
+    const delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
+    const zoomDelta = delta * 0.1;
+
+    // Update the zoom value and limit it to the range of 0.1 to 10
+    this.zoomValue += zoomDelta;
+    if (this.zoomValue < 0.1) {
+      this.zoomValue = 0.1;
+    } else if (this.zoomValue > 10) {
+      this.zoomValue = 10;
+    }
+
+    // Prevent the default scroll behavior
+    event.preventDefault();
   }
 
 
