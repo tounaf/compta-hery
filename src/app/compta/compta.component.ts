@@ -34,7 +34,7 @@ interface User {
   reglement: any;
   AutreInfo: any;
   numFac: any;
-  fournisseur2:any;
+  fournisseur2: any;
 }
 @Component({
   selector: 'app-compta',
@@ -76,6 +76,8 @@ export class ComptaComponent implements OnInit {
   pdfSrc: any = '';
 
   currentVeTtc = ''
+
+  zoomValue: number = 1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -727,7 +729,7 @@ export class ComptaComponent implements OnInit {
     const reglemt = this.form.get('reglement')?.value;
     const info = this.form.get('AutreInfo')?.value;
     const numFact = this.form.get('numFac')?.value;
-    
+
     this.form.get('fournisseur')?.setValue(info + ' ' + valFournisseur + ' ' + numFact + ' ' + reglemt);
 
     // ===========calcule achat================
@@ -770,16 +772,16 @@ export class ComptaComponent implements OnInit {
       body.push(
         [item.date, item.sousClasse, item.compte, item.fileName, item.fournisseur, item.veTtc, item.acTtc]
       )
-   
+
       body.push(
         [item.date, item.sousClasse, item.classe6, item.fileName, item.fournisseur, item.veDebit1, item.veCredit1]
       )
-     
-     if (this.form.get('TauxTva')?.value != '0%') {
-     body.push(
-         [item.date2, item.sousClasse2, item.TauxTva2, item.fileName, item.fournisseur2, item.veDebit2, item.veCredit2]
-      )
-     }
+
+      if (this.form.get('TauxTva')?.value != '0%') {
+        body.push(
+          [item.date2, item.sousClasse2, item.TauxTva2, item.fileName, item.fournisseur2, item.veDebit2, item.veCredit2]
+        )
+      }
 
       this.excelService.exportFromArray(body);
       location.reload();
@@ -792,7 +794,7 @@ export class ComptaComponent implements OnInit {
     const nomPhotos = this.listImage[this.indexImage].name;
     this.fileName = nomPhotos.split('.')[0];
 
-    console.log('------------',this.fileName);
+    console.log('------------', this.fileName);
 
     this.resetFile();
     this.currentIndex = index;
@@ -871,8 +873,8 @@ export class ComptaComponent implements OnInit {
       const current = this.currentIndex - 1;
       const nomPhotos = this.listImage[current].name;
       this.fileName = nomPhotos.split('.')[0];
-      
-      console.log("moin==========",this.fileName);
+
+      console.log("moin==========", this.fileName);
       this.currentIndex--;
       this.selectedImage = this.images[this.currentIndex];
     }
@@ -885,7 +887,7 @@ export class ComptaComponent implements OnInit {
       const current = this.currentIndex + 1;
       const nomPhotos = this.listImage[current].name;
       this.fileName = nomPhotos.split('.')[0];
-       console.log("plus==========",this.fileName);
+      console.log("plus==========", this.fileName);
       this.currentIndex++;
       this.selectedImage = this.images[this.currentIndex];
     }
@@ -963,6 +965,17 @@ export class ComptaComponent implements OnInit {
   quiter() {
     this.router.navigateByUrl('login');
     localStorage.removeItem("password")
+  }
+
+  zoomIn() {
+    this.zoomValue += 0.1;
+  }
+
+  zoomOut() {
+    this.zoomValue -= 0.1;
+    if (this.zoomValue < 0.1) {
+      this.zoomValue = 0.1;
+    }
   }
 
 

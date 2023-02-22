@@ -313,12 +313,18 @@
         <button mat-raised-button color="primary" (click)="nextImage()" style="margin-left: 5px;">Next</button>
       </div>
 
-      <img *ngIf="imageSrc" alt="myimage" class="img-fluid" [src]="imageSrc" width="100%" height="100%" />
-      <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [rotation]="0" [original-size]="false" [show-all]="true"
-        [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
-        [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
-        style="width: 100%; height: 600px;"></pdf-viewer>
 
+
+      <img *ngIf="imageSrc" alt="myimage" [style.transform]="'scale(' + zoomValue + ')'" class="img-fluid"
+        [src]="imageSrc" width="100%" height="100%" />
+      <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [style.transform]="'scale(' + zoomValue + ')'" [rotation]="0"
+        [original-size]="false" [show-all]="true" [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'"
+        [stick-to-page]="false" [render-text]="true" [external-link-target]="'blank'" [autoresize]="true"
+        [show-borders]="false" style="width: 100%; height: 600px;"></pdf-viewer>
+      <div>
+        <button (click)="zoomIn()">Zoom In</button>
+        <button (click)="zoomOut()">Zoom Out</button>
+      </div>
     </div>
 
   </div>
