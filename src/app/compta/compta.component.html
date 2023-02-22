@@ -304,32 +304,32 @@
 
         <tr *ngFor="let item of newLists; let i = index">
           <td>
-            <input #date class="form-control" [placeholder]="item.date" [value]="item.date"
-              (keyup)="vedebit1(date, 'date', i)" />
+            <input #dateN class="form-control" [placeholder]="item.date" [value]="item.date"
+              (keyup)="vedebit1N(dateN, 'date', i)" />
           </td>
           <td>
-            <input #sousClasse class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
-              (keyup)="vedebit1(sousClasse, 'sousClasse', i)" />
+            <input #sousClasseN class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
+              (keyup)="vedebit1N(sousClasseN, 'sousClasse', i)" />
           </td>
           <td>
-            <input #compte class="form-control" [placeholder]="item.compte" [value]="item.compte"
-              (keyup)="vedebit1(compte, 'compte', i)" />
+            <input #compteN class="form-control" [placeholder]="item.compte" [value]="item.compte"
+              (keyup)="vedebit1N(compteN, 'compte', i)" />
           </td>
           <td>
-            <input #fileName class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
-              (keyup)="vedebit1(fileName, 'fileName', i)" />
+            <input #fileNameN class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
+              (keyup)="vedebit1N(fileNameN, 'fileName', i)" />
           </td>
           <td>
-            <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
-              (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
+            <input #fournisseurN class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
+              (keyup)="vedebit1N(fournisseurN, 'fournisseur', i)" />
           </td>
           <td>
-            <input #veTtc class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc"
-              (keyup)="vedebit1(veTtc, 'veTtc', i)" />
+            <input #veTtcN class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc"
+              (keyup)="vedebit1N(veTtcN, 'veTtc', i)" />
           </td>
           <td>
-            <input #acTtc class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
-              (keyup)="vedebit1(acTtc, 'acTtc', i)" />
+            <input #acTtcN class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
+              (keyup)="vedebit1N(acTtcN, 'acTtc', i)" />
           </td>
           <td><button class="btn btn-danger" (click)="removeItem(i,'new')">remove</button></td>
         </tr>

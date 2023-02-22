@@ -726,7 +726,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('TauxTva')?.setValue(4456);
         this.form.get('classe6')?.setValue(606300);
         this.form.get('sousClasse2')?.setValue('AC');
-        this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value ,'dd/MM/yyyy'));
+        this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('TauxTva2')?.setValue(this.form.get('TauxTva')?.value);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
@@ -1083,6 +1083,11 @@ export class ComptaComponent implements OnInit {
     } else {
       this.results.splice(i, 1);
     }
+  }
+
+  vedebit1N($event: any, props: string, index: number) {
+    //@ts-ignore
+    this.newLists[index][props] = $event.value
   }
 
 
