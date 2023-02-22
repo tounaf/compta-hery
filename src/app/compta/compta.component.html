@@ -206,6 +206,7 @@
           <th>libellé</th>
           <th>Debit</th>
           <th>Credit</th>
+          <th>actions</th>
         </tr>
         <tbody *ngFor="let item of results; let i = index">
           <tr>
@@ -237,6 +238,7 @@
               <input #acTtc class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
                 (keyup)="vedebit1(acTtc, 'acTtc', i)" />
             </td>
+            <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td>
           </tr>
           <tr>
             <td><input #date class="form-control" [placeholder]="item.date" [value]="item.date"
@@ -265,6 +267,7 @@
               <input #veCredit1 class="form-control" [placeholder]="item.veCredit1" [value]="item.veCredit1"
                 (keyup)="vedebit1(veCredit1, 'veCredit1', i)" />
             </td>
+            <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td>
           </tr>
           <tr *ngIf="(item.TauxTva != 'CLIENT 0%')">
             <td>
@@ -295,10 +298,44 @@
               <input #veCredit2 class="form-control" [placeholder]="item.veCredit2" [value]="item.veCredit2"
                 (keyup)="vedebit1(veCredit2, 'veCredit2', i)" />
             </td>
+            <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td>
           </tr>
         </tbody>
-      </table>
 
+        <tr *ngFor="let item of newLists; let i = index">
+          <td>
+            <input #date class="form-control" [placeholder]="item.date" [value]="item.date"
+              (keyup)="vedebit1(date, 'date', i)" />
+          </td>
+          <td>
+            <input #sousClasse class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
+              (keyup)="vedebit1(sousClasse, 'sousClasse', i)" />
+          </td>
+          <td>
+            <input #compte class="form-control" [placeholder]="item.compte" [value]="item.compte"
+              (keyup)="vedebit1(compte, 'compte', i)" />
+          </td>
+          <td>
+            <input #fileName class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
+              (keyup)="vedebit1(fileName, 'fileName', i)" />
+          </td>
+          <td>
+            <input #fournisseur class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
+              (keyup)="vedebit1(fournisseur, 'fournisseur', i)" />
+          </td>
+          <td>
+            <input #veTtc class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc"
+              (keyup)="vedebit1(veTtc, 'veTtc', i)" />
+          </td>
+          <td>
+            <input #acTtc class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
+              (keyup)="vedebit1(acTtc, 'acTtc', i)" />
+          </td>
+          <td><button class="btn btn-danger" (click)="removeItem(i,'new')">remove</button></td>
+        </tr>
+
+      </table>
+      <button class="btn btn-success" (click)="newLine()">add</button>
       <div>
         <button mat-raised-button color="primary" (click)="export()" class="mt-2 mb-3">
           Export Excel

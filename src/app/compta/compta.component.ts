@@ -80,6 +80,7 @@ export class ComptaComponent implements OnInit {
   currentVeTtc = ''
 
   zoomValue: number = 1;
+  newLists: User[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -772,8 +773,6 @@ export class ComptaComponent implements OnInit {
     }
 
 
-
-
     this.results.push(this.form.value);
     this.form.reset();
 
@@ -798,11 +797,15 @@ export class ComptaComponent implements OnInit {
           [item.date2, item.sousClasse2, item.TauxTva2, item.fileName2, item.fournisseur2, item.veDebit2, item.veCredit2]
         )
       }
-
-      this.excelService.exportFromArray(body);
-      location.reload();
-      this.router.navigateByUrl('compta');
     })
+
+    this.newLists.forEach((item: User) => {
+      body.push([item.date, item.sousClasse, item.fileName, item.fournisseur, item.veTtc, item.acTtc]);
+    })
+
+    this.excelService.exportFromArray(body);
+    location.reload();
+    this.router.navigateByUrl('compta');
   }
 
   showImage(index: number): void {
@@ -1009,6 +1012,61 @@ export class ComptaComponent implements OnInit {
 
     // Prevent the default scroll behavior
     event.preventDefault();
+  }
+
+  newLine() {
+    //@ts-ignore
+    const newUser: User = {
+      date2: '', sousClasse2: '', TauxTva2: '', fileName2: '', fournisseur2: '', veDebit2: '', veCredit2: ''
+    }
+
+    const form = this.formBuilder.group({
+      // nom: [''],
+      // prenom: [''],
+      ttc: [''],
+      parentClasse: [''],
+      sousClasse: [''],
+      sousClasse2: [''],
+      compte: [''],
+      date: [''],
+      date2: [''],
+      fileName: [''],
+      fournisseur: [''],
+      nature: [''],
+      achat: [''],
+      vente: [''],
+      veTtc: [''],
+      acTtc: [''],
+      TauxTva: [''],
+      TauxTva2: [''],
+      veCredit1: [''],
+      veCredit2: [''],
+      veDebit1: [''],
+      veDebit2: [''],
+      acCredit1: [''],
+      acCredit2: [''],
+      acDebit1: [''],
+      acDebit2: [''],
+      classe6: [''],
+      reglement: [''],
+      AutreInfo: [''],
+      numFac: [''],
+      fournisseur2: [''],
+      fileName2: [''],
+      // Autres champs
+    });
+    console.log(form.value);
+    this.newLists.push(form.value);
+    console.log(this.newLists);
+    // this.results.push([newUser.date2, newUser.sousClasse, newUser.TauxTva, newUser.fileName2, newUser.fournisseur2, newUser.veCredit2, newUser.veCredit2])
+  }
+
+  removeItem(i: number, context: string = '') {
+    if (context == 'new') {
+      this.newLists.splice(i, 1);
+    } else {
+      this.results.splice(i, 1);
+    }
   }
 
 
