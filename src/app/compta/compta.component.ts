@@ -92,6 +92,7 @@ export class ComptaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.navigateByUrl('compta');
     this.form = this.formBuilder.group({
       // nom: [''],
       // prenom: [''],
