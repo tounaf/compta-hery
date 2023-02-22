@@ -306,7 +306,8 @@
       </div>
     </div>
 
-    <div class="col-md-4" style="border: 4px solid rgb(184, 182, 182); background-color: rgb(149, 198, 244);">
+    <div (mousewheel)="onScroll($event)" (DOMMouseScroll)="onScroll($event)" class="col-md-4"
+      style="border: 4px solid rgb(184, 182, 182); background-color: rgb(149, 198, 244);">
 
       <div class="col-md-12" style="text-align: center; margin-top: 5px; margin-bottom: 5px;">
         <button mat-raised-button color="primary" (click)="prevImage()">Previous</button>
