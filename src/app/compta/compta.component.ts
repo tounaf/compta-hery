@@ -1033,7 +1033,7 @@ export class ComptaComponent implements OnInit {
   newLine() {
     //@ts-ignore
     const newUser: User = {
-      date2: '', sousClasse2: '', TauxTva2: '', fileName2: '', fournisseur2: '', veDebit2: '', veCredit2: ''
+      date: '', sousClasse2: '', TauxTva2: '', fileName2: '', fournisseur2: '', veDebit2: '', veCredit2: ''
     }
 
     const form = this.formBuilder.group({
@@ -1073,7 +1073,7 @@ export class ComptaComponent implements OnInit {
     });
     console.log(form.value);
     this.newLists.push(form.value);
-    console.log(this.newLists);
+    console.log('------------------',this.newLists);
     // this.results.push([newUser.date2, newUser.sousClasse, newUser.TauxTva, newUser.fileName2, newUser.fournisseur2, newUser.veCredit2, newUser.veCredit2])
   }
 
