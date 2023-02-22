@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule, DatePipe } from '@angular/common'; 
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
@@ -32,9 +33,10 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     MatSelectModule,
     MatIconModule,
     PdfViewerModule,
+    CommonModule
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
