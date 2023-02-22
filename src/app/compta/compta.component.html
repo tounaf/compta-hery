@@ -301,8 +301,8 @@
             <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td>
           </tr>
         </tbody>
-
-        <tr *ngFor="let item of newLists; let i = index">
+        <tbody *ngFor="let item of newLists; let i = index">
+        <tr >
           <td>
             <input #date class="form-control" [placeholder]="item.date" [value]="item.date"
               (keyup)="vedebit1(date, 'date', i)" />
@@ -333,7 +333,7 @@
           </td>
           <td><button class="btn btn-danger" (click)="removeItem(i,'new')">remove</button></td>
         </tr>
-
+      </tbody>
       </table>
       <button class="btn btn-success" (click)="newLine()">add</button>
       <div>
