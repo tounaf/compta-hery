@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ExcelService } from '../excel.service';
 import { Router, Params, ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 // import { SessionStorageService } from 'ngx-webstorage';
 
 
@@ -85,6 +86,7 @@ export class ComptaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
     private router: Router,
+    private datePipe: DatePipe
     // private sessionStorage: SessionStorageService
   ) {
     this.form = new FormGroup({
@@ -94,8 +96,6 @@ export class ComptaComponent implements OnInit {
   ngOnInit(): void {
     this.router.navigateByUrl('compta');
     this.form = this.formBuilder.group({
-      // nom: [''],
-      // prenom: [''],
       ttc: [''],
       parentClasse: [''],
       sousClasse: [''],
@@ -639,10 +639,12 @@ export class ComptaComponent implements OnInit {
         this.form.get('veDebit2')?.setValue(0);
         this.form.get('sousClasse2')?.setValue('VE');
         this.form.get('TauxTva2')?.setValue(4457);
-        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
+        this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('classe6')?.setValue(706000);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
+        this.form.get('fileName')?.value;
 
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 10%") {
@@ -653,10 +655,12 @@ export class ComptaComponent implements OnInit {
         this.form.get('veDebit2')?.setValue(0);
         this.form.get('sousClasse2')?.setValue('VE');
         this.form.get('TauxTva2')?.setValue(4457);
-        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
+        this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('classe6')?.setValue(706000);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
+        this.form.get('fileName')?.value;
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 5.5%") {
         const calVeCredit1 = 1.055;
@@ -666,22 +670,26 @@ export class ComptaComponent implements OnInit {
         this.form.get('veDebit2')?.setValue(0);
         this.form.get('sousClasse2')?.setValue('VE');
         this.form.get('TauxTva2')?.setValue(4457);
-        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
+        this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('classe6')?.setValue(706000);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
+        this.form.get('fileName')?.value;
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
         this.form.get('veCredit1')?.setValue(this.form.get('ttc')?.value);
         this.form.get('veDebit1')?.setValue(0);
-        this.form.get('fournisseur')?.setValue('');
+        this.form.get('fournisseur')?.value
         this.form.get('classe6')?.setValue(706000);
         this.form.get('TauxTva2')?.setValue('');
         this.form.get('compte')?.value;
         this.form.get('sousClasse2')?.setValue('');
         this.form.get('date2')?.setValue('');
+        this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('fournisseur2')?.setValue('');
         this.form.get('fileName2')?.setValue('');
+        this.form.get('fileName')?.value;
       }
 
 
@@ -701,10 +709,12 @@ export class ComptaComponent implements OnInit {
         this.form.get('TauxTva')?.setValue(4456);
         this.form.get('classe6')?.setValue(606300);
         this.form.get('sousClasse2')?.setValue('AC');
-        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
+        this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('TauxTva2')?.setValue(this.form.get('TauxTva')?.value);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
+        this.form.get('fileName')?.setValue(this.fileName);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 10%") {
         const calAcCredit1 = 1.1;
@@ -715,10 +725,12 @@ export class ComptaComponent implements OnInit {
         this.form.get('TauxTva')?.setValue(4456);
         this.form.get('classe6')?.setValue(606300);
         this.form.get('sousClasse2')?.setValue('AC');
-        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value ,'dd/MM/yyyy'));
+        this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('TauxTva2')?.setValue(this.form.get('TauxTva')?.value);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
+        this.form.get('fileName')?.setValue(this.fileName);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 5.5%") {
         const calAcCredit1 = 1.055;
@@ -729,10 +741,12 @@ export class ComptaComponent implements OnInit {
         this.form.get('TauxTva')?.setValue(4456);
         this.form.get('classe6')?.setValue(606300);
         this.form.get('sousClasse2')?.setValue('AC');
-        this.form.get('date2')?.setValue(this.form.get('date')?.value);
+        this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
+        this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('TauxTva2')?.setValue(this.form.get('TauxTva')?.value);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
+        this.form.get('fileName')?.setValue(this.fileName);
       }
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
         this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value);
@@ -742,8 +756,10 @@ export class ComptaComponent implements OnInit {
         this.form.get('compte')?.value;
         this.form.get('sousClasse2')?.setValue('');
         this.form.get('date2')?.setValue('');
+        this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('fournisseur2')?.setValue('');
         this.form.get('fileName2')?.setValue('');
+        this.form.get('fournisseur')?.value
       }
     }
 
@@ -770,8 +786,6 @@ export class ComptaComponent implements OnInit {
       const calculVente = ((client) / (this.nature + this.Tva));
       this.form.get('vente')?.setValue(calculVente);
     }
-
-
 
 
     this.results.push(this.form.value);
