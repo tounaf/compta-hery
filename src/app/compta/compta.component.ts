@@ -79,6 +79,8 @@ export class ComptaComponent implements OnInit {
 
   currentVeTtc = ''
 
+  zoomValue: number = 1;
+
   constructor(
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
@@ -743,10 +745,6 @@ export class ComptaComponent implements OnInit {
         this.form.get('fileName2')?.setValue('');
       }
     }
-
-
-
-
   
     // ===========calcule achat================
     const calculAchat = ((this.nature + this.Tva) / this.form.get('ttc')?.value);
@@ -788,7 +786,7 @@ export class ComptaComponent implements OnInit {
       body.push(
         [item.date, item.sousClasse, item.compte, item.fileName, item.fournisseur, item.veTtc, item.acTtc]
       )
-   
+
       body.push(
         [item.date, item.sousClasse, item.classe6, item.fileName, item.fournisseur, item.veDebit1, item.veCredit1]
       )
@@ -811,7 +809,7 @@ export class ComptaComponent implements OnInit {
     const nomPhotos = this.listImage[this.indexImage].name;
     this.fileName = nomPhotos.split('.')[0];
 
-    console.log('------------',this.fileName);
+    console.log('------------', this.fileName);
 
     this.resetFile();
     this.currentIndex = index;
@@ -890,8 +888,8 @@ export class ComptaComponent implements OnInit {
       const current = this.currentIndex - 1;
       const nomPhotos = this.listImage[current].name;
       this.fileName = nomPhotos.split('.')[0];
-      
-      console.log("moin==========",this.fileName);
+
+      console.log("moin==========", this.fileName);
       this.currentIndex--;
       this.selectedImage = this.images[this.currentIndex];
     }
@@ -904,7 +902,7 @@ export class ComptaComponent implements OnInit {
       const current = this.currentIndex + 1;
       const nomPhotos = this.listImage[current].name;
       this.fileName = nomPhotos.split('.')[0];
-       console.log("plus==========",this.fileName);
+      console.log("plus==========", this.fileName);
       this.currentIndex++;
       this.selectedImage = this.images[this.currentIndex];
     }
@@ -982,6 +980,17 @@ export class ComptaComponent implements OnInit {
   quiter() {
     this.router.navigateByUrl('login');
     localStorage.removeItem("password")
+  }
+
+  zoomIn() {
+    this.zoomValue += 0.1;
+  }
+
+  zoomOut() {
+    this.zoomValue -= 0.1;
+    if (this.zoomValue < 0.1) {
+      this.zoomValue = 0.1;
+    }
   }
 
 
