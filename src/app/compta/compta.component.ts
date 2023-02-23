@@ -81,7 +81,7 @@ export class ComptaComponent implements OnInit {
 
   zoomValue: number = 1;
   newLists: User[] = [];
-
+  rotation: number = 0;
   constructor(
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
@@ -1071,7 +1071,7 @@ export class ComptaComponent implements OnInit {
     });
     console.log(form.value);
     this.newLists.push(form.value);
-    console.log('------------------',this.newLists);
+    console.log('------------------', this.newLists);
     // this.results.push([newUser.date2, newUser.sousClasse, newUser.TauxTva, newUser.fileName2, newUser.fournisseur2, newUser.veCredit2, newUser.veCredit2])
   }
 
@@ -1084,10 +1084,19 @@ export class ComptaComponent implements OnInit {
   }
 
   vedebit1N($event: any, props: string, index: number) {
-    console.log("********------------",this.newLists);
-    
+    console.log("********------------", this.newLists);
+
     //@ts-ignore
     this.newLists[index][props] = $event.value
   }
 
+  rotateClockwise() {
+    // Add 90 degrees to the rotation property
+    this.rotation += 90;
+  }
+
+  rotateCounterClockwise() {
+    // Subtract 90 degrees from the rotation property
+    this.rotation -= 90;
+  }
 }

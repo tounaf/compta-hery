@@ -302,38 +302,38 @@
           </tr>
         </tbody>
         <tbody *ngFor="let item of newLists; let i = index">
-        <tr >
-          <td>
-            <input #dateN class="form-control" [placeholder]="item.date" [value]="item.date"
-              (keyup)="vedebit1N(dateN, 'date', i)" />
-          </td>
-          <td>
-            <input #sousClasseN class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
-              (keyup)="vedebit1N(sousClasseN, 'sousClasse', i)" />
-          </td>
-          <td>
-            <input #compteN class="form-control" [placeholder]="item.compte" [value]="item.compte"
-              (keyup)="vedebit1N(compteN, 'compte', i)" />
-          </td>
-          <td>
-            <input #fileNameN class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
-              (keyup)="vedebit1N(fileNameN, 'fileName', i)" />
-          </td>
-          <td>
-            <input #fournisseurN class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
-              (keyup)="vedebit1N(fournisseurN, 'fournisseur', i)" />
-          </td>
-          <td>
-            <input #veTtcN class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc"
-              (keyup)="vedebit1N(veTtcN, 'veTtc', i)" />
-          </td>
-          <td>
-            <input #acTtcN class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
-              (keyup)="vedebit1N(acTtcN, 'acTtc', i)" />
-          </td>
-          <td><button class="btn btn-danger" (click)="removeItem(i,'new')"> X </button></td>
-        </tr>
-      </tbody>
+          <tr>
+            <td>
+              <input #dateN class="form-control" [placeholder]="item.date" [value]="item.date"
+                (keyup)="vedebit1N(dateN, 'date', i)" />
+            </td>
+            <td>
+              <input #sousClasseN class="form-control" [placeholder]="item.sousClasse" [value]="item.sousClasse"
+                (keyup)="vedebit1N(sousClasseN, 'sousClasse', i)" />
+            </td>
+            <td>
+              <input #compteN class="form-control" [placeholder]="item.compte" [value]="item.compte"
+                (keyup)="vedebit1N(compteN, 'compte', i)" />
+            </td>
+            <td>
+              <input #fileNameN class="form-control" [placeholder]="item.fileName" [value]="item.fileName"
+                (keyup)="vedebit1N(fileNameN, 'fileName', i)" />
+            </td>
+            <td>
+              <input #fournisseurN class="form-control" [placeholder]="item.fournisseur" [value]="item.fournisseur"
+                (keyup)="vedebit1N(fournisseurN, 'fournisseur', i)" />
+            </td>
+            <td>
+              <input #veTtcN class="form-control" [placeholder]="item.veTtc" [value]="item.veTtc"
+                (keyup)="vedebit1N(veTtcN, 'veTtc', i)" />
+            </td>
+            <td>
+              <input #acTtcN class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
+                (keyup)="vedebit1N(acTtcN, 'acTtc', i)" />
+            </td>
+            <td><button class="btn btn-danger" (click)="removeItem(i,'new')"> X </button></td>
+          </tr>
+        </tbody>
       </table>
       <button class="btn btn-success" (click)="newLine()"> + </button>
       <div>
@@ -350,15 +350,18 @@
         <button mat-raised-button color="primary" (click)="prevImage()">Previous</button>
         <button mat-raised-button color="primary" (click)="nextImage()"
           style="margin-left: 5px; margin-right: 20px;">Next</button>
-          <!-- <button style="border-radius: 40%; width: 30px;">**</button> -->
+
+        <button style="width: 30pw; border-radius: 50%;" (click)="rotateClockwise()"><mat-icon>replay</mat-icon></button>
+        <button style="width: 30pw; border-radius: 50%;" (click)="rotateCounterClockwise()"> <mat-icon>redo</mat-icon></button>
         <!-- <button style="border-radius: 40%; width: 30px;" (click)="zoomIn()">+</button>
         <button style="border-radius: 40%; width: 30px;" (click)="zoomOut()">-</button> -->
       </div>
 
 
-      <img *ngIf="imageSrc" alt="myimage" [style.transform]="'scale(' + zoomValue + ')'" class="img-fluid"
-        [src]="imageSrc" width="100%" height="100%"/>
-      <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [style.transform]="'scale(' + zoomValue + ')'" [rotation]="0"
+      <img *ngIf="imageSrc" alt="myimage" [style.transform]="'scale(' + zoomValue + ') rotate(' + rotation + 'deg)'"
+        class="img-fluid" [src]="imageSrc" width="100%" height="100%" />
+      <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc"
+        [style.transform]="'scale(' + zoomValue + ') rotate(' + rotation + 'deg)'" [rotation]="0"
         [original-size]="false" [show-all]="true" [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'"
         [stick-to-page]="false" [render-text]="true" [external-link-target]="'blank'" [autoresize]="true"
         [show-borders]="false" style="width: 100%; height: 600px;"></pdf-viewer>
