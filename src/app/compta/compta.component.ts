@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ExcelService } from '../excel.service';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-// import { SessionStorageService } from 'ngx-webstorage';
 
 
 interface User {
@@ -87,8 +86,7 @@ export class ComptaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
     private router: Router,
-    private datePipe: DatePipe
-    // private sessionStorage: SessionStorageService
+    private datePipe: DatePipe,
   ) {
     this.form = new FormGroup({
     });
@@ -1091,6 +1089,5 @@ export class ComptaComponent implements OnInit {
     //@ts-ignore
     this.newLists[index][props] = $event.value
   }
-
 
 }

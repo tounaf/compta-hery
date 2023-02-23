@@ -350,13 +350,14 @@
         <button mat-raised-button color="primary" (click)="prevImage()">Previous</button>
         <button mat-raised-button color="primary" (click)="nextImage()"
           style="margin-left: 5px; margin-right: 20px;">Next</button>
+          <!-- <button style="border-radius: 40%; width: 30px;">**</button> -->
         <!-- <button style="border-radius: 40%; width: 30px;" (click)="zoomIn()">+</button>
         <button style="border-radius: 40%; width: 30px;" (click)="zoomOut()">-</button> -->
       </div>
 
 
       <img *ngIf="imageSrc" alt="myimage" [style.transform]="'scale(' + zoomValue + ')'" class="img-fluid"
-        [src]="imageSrc" width="100%" height="100%" />
+        [src]="imageSrc" width="100%" height="100%"/>
       <pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [style.transform]="'scale(' + zoomValue + ')'" [rotation]="0"
         [original-size]="false" [show-all]="true" [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'"
         [stick-to-page]="false" [render-text]="true" [external-link-target]="'blank'" [autoresize]="true"
