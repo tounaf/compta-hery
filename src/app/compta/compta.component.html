@@ -238,7 +238,7 @@
               <input #acTtc class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
                 (keyup)="vedebit1(acTtc, 'acTtc', i)" />
             </td>
-            <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td>
+            <td><button class="btn btn-danger" (click)="removeItem(i)"> X </button></td>
           </tr>
           <tr>
             <td><input #date class="form-control" [placeholder]="item.date" [value]="item.date"
@@ -267,7 +267,7 @@
               <input #veCredit1 class="form-control" [placeholder]="item.veCredit1" [value]="item.veCredit1"
                 (keyup)="vedebit1(veCredit1, 'veCredit1', i)" />
             </td>
-            <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td>
+            <!-- <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td> -->
           </tr>
           <tr *ngIf="(item.TauxTva != 'CLIENT 0%')">
             <td>
@@ -298,7 +298,7 @@
               <input #veCredit2 class="form-control" [placeholder]="item.veCredit2" [value]="item.veCredit2"
                 (keyup)="vedebit1(veCredit2, 'veCredit2', i)" />
             </td>
-            <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td>
+            <!-- <td><button class="btn btn-danger" (click)="removeItem(i)">remove</button></td> -->
           </tr>
         </tbody>
         <tbody *ngFor="let item of newLists; let i = index">
@@ -331,11 +331,11 @@
             <input #acTtcN class="form-control" [placeholder]="item.acTtc" [value]="item.acTtc"
               (keyup)="vedebit1N(acTtcN, 'acTtc', i)" />
           </td>
-          <td><button class="btn btn-danger" (click)="removeItem(i,'new')">remove</button></td>
+          <td><button class="btn btn-danger" (click)="removeItem(i,'new')"> X </button></td>
         </tr>
       </tbody>
       </table>
-      <button class="btn btn-success" (click)="newLine()">add</button>
+      <button class="btn btn-success" (click)="newLine()"> + </button>
       <div>
         <button mat-raised-button color="primary" (click)="export()" class="mt-2 mb-3">
           Export Excel
