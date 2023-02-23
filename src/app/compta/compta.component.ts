@@ -679,7 +679,7 @@ export class ComptaComponent implements OnInit {
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
         this.form.get('veCredit1')?.setValue(this.form.get('ttc')?.value);
         this.form.get('veDebit1')?.setValue(0);
-        this.form.get('fournisseur')?.value
+        this.form.get('fournisseur')?.value;
         this.form.get('classe6')?.setValue(706000);
         this.form.get('TauxTva2')?.setValue('');
         this.form.get('compte')?.value;
@@ -758,7 +758,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('fournisseur2')?.setValue('');
         this.form.get('fileName2')?.setValue('');
-        this.form.get('fournisseur')?.value
+        this.form.get('fournisseur')?.value;
       }
     }
 
