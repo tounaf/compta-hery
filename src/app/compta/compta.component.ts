@@ -816,7 +816,7 @@ export class ComptaComponent implements OnInit {
     })
 
     this.newLists.forEach((item: User) => {
-      body.push([item.date, item.sousClasse, item.fileName, item.fournisseur, item.veTtc, item.acTtc]);
+      body.push([item.date, item.sousClasse, item.compte, item.fileName, item.fournisseur, item.veTtc, item.acTtc]);
     })
 
     this.excelService.exportFromArray(body);
@@ -1033,7 +1033,7 @@ export class ComptaComponent implements OnInit {
   newLine() {
     //@ts-ignore
     const newUser: User = {
-      date: '', sousClasse2: '', TauxTva2: '', fileName2: '', fournisseur2: '', veDebit2: '', veCredit2: ''
+      date: '', sousClasse2: '', compte: '', fileName2: '', fournisseur2: '', veDebit2: '', veCredit2: ''
     }
 
     const form = this.formBuilder.group({
@@ -1086,6 +1086,8 @@ export class ComptaComponent implements OnInit {
   }
 
   vedebit1N($event: any, props: string, index: number) {
+    console.log("********------------",this.newLists);
+    
     //@ts-ignore
     this.newLists[index][props] = $event.value
   }
