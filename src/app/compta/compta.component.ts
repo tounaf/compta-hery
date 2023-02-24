@@ -857,6 +857,7 @@ export class ComptaComponent implements OnInit {
       if (firstFile.type === 'application/pdf') {
 
         const fileReader = new FileReader();
+        
         fileReader.onload = () => {
           this.pdfSrc = fileReader.result;
         };
