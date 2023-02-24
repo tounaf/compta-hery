@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-7" style="border: 4px solid rgb(184, 182, 182);">
+    <div class="col-md-5" style="border: 4px solid rgb(184, 182, 182);">
       <!-- Formulaire de saisie -->
       <div class="form-container mt-4" fxFlex="50">
         <form [formGroup]="form">
@@ -348,7 +348,7 @@
       </div>
     </div>
 
-    <div (mousewheel)="onScroll($event)" (DOMMouseScroll)="onScroll($event)" class="col-md-4"
+    <div (mousewheel)="onScroll($event)" (DOMMouseScroll)="onScroll($event)" class="col-md-6"
       style="border: 4px solid rgb(184, 182, 182); background-color: rgb(149, 198, 244);">
 
       <div class="col-md-12" style="text-align: center; margin-top: 5px; margin-bottom: 5px;">
@@ -356,8 +356,8 @@
         <button mat-raised-button color="primary" (click)="nextImage()"
           style="margin-left: 5px; margin-right: 20px;">Next</button>
 
-        <button (click)="rotateClockwise()">Rotate Clockwise</button>
-        <button (click)="rotateCounterClockwise()">Rotate Counter-Clockwise</button>
+        <button style="width: 30pw; border-radius: 50%; margin-right: 5px;" (click)="rotateClockwise()"><mat-icon>replay</mat-icon></button>
+        <button style="width: 30pw; border-radius: 50%;" (click)="rotateCounterClockwise()"> <mat-icon>redo</mat-icon></button>
         <!-- <button style="border-radius: 40%; width: 30px;" (click)="zoomIn()">+</button>
         <button style="border-radius: 40%; width: 30px;" (click)="zoomOut()">-</button> -->
       </div>

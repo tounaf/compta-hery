@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ExcelService } from '../excel.service';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-// import { SessionStorageService } from 'ngx-webstorage';
 
 
 interface User {
@@ -89,8 +88,7 @@ export class ComptaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
     private router: Router,
-    private datePipe: DatePipe
-    // private sessionStorage: SessionStorageService
+    private datePipe: DatePipe,
   ) {
     this.form = new FormGroup({
     });
@@ -621,8 +619,9 @@ export class ComptaComponent implements OnInit {
     const reglemt = this.form.get('reglement')?.value;
     const info = this.form.get('AutreInfo')?.value;
     const numFact = this.form.get('numFac')?.value;
+    const infoValue = info ? info : '';
 
-    this.form.get('fournisseur')?.setValue(valFournisseur + ' ' + numFact + ' ' + reglemt + ' ' + info);
+    this.form.get('fournisseur')?.setValue(valFournisseur + ' ' + numFact + ' ' + reglemt + ' ' + infoValue);
 
 
     // ===========filename================
@@ -644,7 +643,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('TauxTva2')?.setValue(4457);
         this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
-        this.form.get('classe6')?.setValue(706000);
+        this.form.get('classe6')?.setValue(this.form.get('nature')?.value);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
         this.form.get('fileName')?.value;
@@ -660,7 +659,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('TauxTva2')?.setValue(4457);
         this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
-        this.form.get('classe6')?.setValue(706000);
+        this.form.get('classe6')?.setValue(this.form.get('nature')?.value);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
         this.form.get('fileName')?.value;
@@ -675,7 +674,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('TauxTva2')?.setValue(4457);
         this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
-        this.form.get('classe6')?.setValue(706000);
+        this.form.get('classe6')?.setValue(this.form.get('nature')?.value);
         this.form.get('fournisseur2')?.setValue(this.form.get('fournisseur')?.value);
         this.form.get('fileName2')?.setValue(this.form.get('fileName')?.value);
         this.form.get('fileName')?.value;
@@ -683,8 +682,8 @@ export class ComptaComponent implements OnInit {
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
         this.form.get('veCredit1')?.setValue(this.form.get('ttc')?.value);
         this.form.get('veDebit1')?.setValue(0);
-        this.form.get('fournisseur')?.value
-        this.form.get('classe6')?.setValue(706000);
+        this.form.get('fournisseur')?.value;
+        this.form.get('classe6')?.setValue(this.form.get('nature')?.value);
         this.form.get('TauxTva2')?.setValue('');
         this.form.get('compte')?.value;
         this.form.get('sousClasse2')?.setValue('');
@@ -710,7 +709,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
         this.form.get('TauxTva')?.setValue(4456);
-        this.form.get('classe6')?.setValue(606300);
+        this.form.get('classe6')?.setValue(this.form.get('nature')?.value);
         this.form.get('sousClasse2')?.setValue('AC');
         this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
@@ -726,7 +725,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
         this.form.get('TauxTva')?.setValue(4456);
-        this.form.get('classe6')?.setValue(606300);
+        this.form.get('classe6')?.setValue(this.form.get('nature')?.value);
         this.form.get('sousClasse2')?.setValue('AC');
         this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
@@ -742,7 +741,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('veCredit1')?.setValue(0);
         this.form.get('veCredit2')?.setValue(0);
         this.form.get('TauxTva')?.setValue(4456);
-        this.form.get('classe6')?.setValue(606300);
+        this.form.get('classe6')?.setValue(this.form.get('nature')?.value);
         this.form.get('sousClasse2')?.setValue('AC');
         this.form.get('date2')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
@@ -754,7 +753,7 @@ export class ComptaComponent implements OnInit {
       if (this.form.get('TauxTva')?.value == "CLIENT 0%") {
         this.form.get('veDebit1')?.setValue(this.form.get('ttc')?.value);
         this.form.get('veCredit1')?.setValue(0);
-        this.form.get('classe6')?.setValue(606300);
+        this.form.get('classe6')?.setValue(this.form.get('nature')?.value);
         this.form.get('TauxTva2')?.setValue('');
         this.form.get('compte')?.value;
         this.form.get('sousClasse2')?.setValue('');
@@ -762,7 +761,7 @@ export class ComptaComponent implements OnInit {
         this.form.get('date')?.setValue(this.datePipe.transform(this.form.get('date')?.value, 'dd/MM/yyyy'));
         this.form.get('fournisseur2')?.setValue('');
         this.form.get('fileName2')?.setValue('');
-        this.form.get('fournisseur')?.value
+        this.form.get('fournisseur')?.value;
       }
     }
 
