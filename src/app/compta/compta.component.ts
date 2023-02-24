@@ -82,6 +82,8 @@ export class ComptaComponent implements OnInit {
   zoomValue: number = 1;
   newLists: User[] = [];
   rotation: number = 0;
+  thumbPdfs: string[] = [];
+  thumbImages: string[] = [];
   constructor(
     private formBuilder: FormBuilder,
     private excelService: ExcelService,
@@ -617,7 +619,7 @@ export class ComptaComponent implements OnInit {
     const reglemt = this.form.get('reglement')?.value;
     const info = this.form.get('AutreInfo')?.value;
     const numFact = this.form.get('numFac')?.value;
-    const infoValue = info ? info : ''; 
+    const infoValue = info ? info : '';
 
     this.form.get('fournisseur')?.setValue(valFournisseur + ' ' + numFact + ' ' + reglemt + ' ' + infoValue);
 
@@ -851,7 +853,21 @@ export class ComptaComponent implements OnInit {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = (e: any) => {
-          this.images.push(e.target.result);
+
+          const data = e.target.result;
+          const fileFormat = this.getFileFormat(data);
+          console.log('dataddd')
+          console.log(data)
+          const typefile = data.split(';')[0].split(':')[1];
+          if (typefile === 'application/pdf') {
+            // Handle PDF file
+            this.thumbPdfs.push(data);
+          } else {
+            // Handle image file
+            this.thumbImages.push(data)
+          }
+
+          // this.images.push(e.target.result);
         };
       }
       if (firstFile.type === 'application/pdf') {
@@ -1101,4 +1117,22 @@ export class ComptaComponent implements OnInit {
     // Subtract 90 degrees from the rotation property
     this.rotation -= 90;
   }
+
+  getFileFormat(data: any): string {
+    // Get the first few bytes of the file data
+    const headerBytes = new Uint8Array(data.slice(0, 4));
+
+    // Check if the file format matches a PDF or an image format
+    if (headerBytes[0] === 0x25 && headerBytes[1] === 0x50 && headerBytes[2] === 0x44 && headerBytes[3] === 0x46) {
+      return 'pdf';
+    } else if ((headerBytes[0] === 0xff && headerBytes[1] === 0xd8 && headerBytes[2] === 0xff) ||
+      (headerBytes[0] === 0x89 && headerBytes[1] === 0x50 && headerBytes[2] === 0x4e && headerBytes[3] === 0x47) ||
+      (headerBytes[0] === 0x47 && headerBytes[1] === 0x49 && headerBytes[2] === 0x46 && headerBytes[3] === 0x38)) {
+      return 'image';
+    } else {
+      return 'unknown';
+    }
+  }
+
+
 }
