@@ -13,15 +13,15 @@
   <div class="row mt-4" style="margin-left: 1%; border: 4px solid rgb(184, 182, 182);">
     <div class="col-md-1" style="background-color: rgb(149, 198, 244);">
       <div>
-        <div style="margin-top: 10px;" *ngFor="let image of thumbImages; let i = index"
+        <div style="margin-top: 10px;" *ngFor="let image of images; let i = index"
           [style.borderStyle]="i === currentIndex ? 'solid' : 'none'" [style.display]="'inline-block'">
           <img src="{{image}}" (click)="showImage(i)" width="100%" height="100%">
         </div>
-        <div style="margin-top: 10px;" *ngFor="let image of thumbPdfs; let i = index"
+        <!-- <div style="margin-top: 10px;" *ngFor="let image of thumbPdfs; let i = index"
           [style.borderStyle]="i === currentIndex ? 'solid' : 'none'" [style.display]="'inline-block'">
-          <pdf-viewer [src]="image" [render-text]="true" [show-borders]="false" style="width: 200px;height:200px"
+          <pdf-viewer [src]="image" [render-text]="true" [show-borders]="false" style="width: 70px;height:50px"
             width="100%" height="100%"></pdf-viewer>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="col-md-5" style="border: 4px solid rgb(184, 182, 182);">

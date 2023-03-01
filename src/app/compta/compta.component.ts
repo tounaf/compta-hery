@@ -854,20 +854,20 @@ export class ComptaComponent implements OnInit {
         reader.readAsDataURL(file);
         reader.onload = (e: any) => {
 
-          const data = e.target.result;
-          const fileFormat = this.getFileFormat(data);
-          console.log('dataddd')
-          console.log(data)
-          const typefile = data.split(';')[0].split(':')[1];
-          if (typefile === 'application/pdf') {
-            // Handle PDF file
-            this.thumbPdfs.push(data);
-          } else {
-            // Handle image file
-            this.thumbImages.push(data)
-          }
+          // const data = e.target.result;
+          // const fileFormat = this.getFileFormat(data);
+          // console.log('dataddd')
+          // console.log(data)
+          // const typefile = data.split(';')[0].split(':')[1];
+          // if (typefile === 'application/pdf') {
+          //   // Handle PDF file
+          //   this.thumbPdfs.push(data);
+          // } else {
+          //   // Handle image file
+          //   this.thumbImages.push(data)
+          // }
 
-          // this.images.push(e.target.result);
+          this.images.push(e.target.result);
         };
       }
       if (firstFile.type === 'application/pdf') {
@@ -928,8 +928,9 @@ export class ComptaComponent implements OnInit {
       console.log("moin==========", this.fileName);
       this.currentIndex--;
       this.selectedImage = this.images[this.currentIndex];
+      this.setCurrentFile();
+    
     }
-    this.setCurrentFile();
   }
 
   nextImage(): void {
@@ -939,10 +940,11 @@ export class ComptaComponent implements OnInit {
       const nomPhotos = this.listImage[current].name;
       this.fileName = nomPhotos.split('.')[0];
       console.log("plus==========", this.fileName);
+      this.selectedImage = this.images[current];
       this.currentIndex++;
-      this.selectedImage = this.images[this.currentIndex];
+      this.setCurrentFile();
+     
     }
-    this.setCurrentFile();
   }
 
   resetFile() {
@@ -1118,21 +1120,21 @@ export class ComptaComponent implements OnInit {
     this.rotation -= 90;
   }
 
-  getFileFormat(data: any): string {
-    // Get the first few bytes of the file data
-    const headerBytes = new Uint8Array(data.slice(0, 4));
+  // getFileFormat(data: any): string {
+  //   // Get the first few bytes of the file data
+  //   const headerBytes = new Uint8Array(data.slice(0, 4));
 
-    // Check if the file format matches a PDF or an image format
-    if (headerBytes[0] === 0x25 && headerBytes[1] === 0x50 && headerBytes[2] === 0x44 && headerBytes[3] === 0x46) {
-      return 'pdf';
-    } else if ((headerBytes[0] === 0xff && headerBytes[1] === 0xd8 && headerBytes[2] === 0xff) ||
-      (headerBytes[0] === 0x89 && headerBytes[1] === 0x50 && headerBytes[2] === 0x4e && headerBytes[3] === 0x47) ||
-      (headerBytes[0] === 0x47 && headerBytes[1] === 0x49 && headerBytes[2] === 0x46 && headerBytes[3] === 0x38)) {
-      return 'image';
-    } else {
-      return 'unknown';
-    }
-  }
+  //   // Check if the file format matches a PDF or an image format
+  //   if (headerBytes[0] === 0x25 && headerBytes[1] === 0x50 && headerBytes[2] === 0x44 && headerBytes[3] === 0x46) {
+  //     return 'pdf';
+  //   } else if ((headerBytes[0] === 0xff && headerBytes[1] === 0xd8 && headerBytes[2] === 0xff) ||
+  //     (headerBytes[0] === 0x89 && headerBytes[1] === 0x50 && headerBytes[2] === 0x4e && headerBytes[3] === 0x47) ||
+  //     (headerBytes[0] === 0x47 && headerBytes[1] === 0x49 && headerBytes[2] === 0x46 && headerBytes[3] === 0x38)) {
+  //     return 'image';
+  //   } else {
+  //     return 'unknown';
+  //   }
+  // }
 
 
 }
